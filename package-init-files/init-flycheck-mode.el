@@ -1,1 +1,3 @@
-(global-flycheck-mode 1)
+(require 'flycheck)
+(add-hook 'after-init-hook #'global-flycheck-mode)
+

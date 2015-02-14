@@ -1,5 +1,5 @@
 ;;;; Load vanilla-emacs config
-(load-file "~/.emacs.d/init-base-emacs-configuration.el")
+(load "~/.emacs.d/init-base-emacs-configuration")
 
 ;;;; Install el-get
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
@@ -21,6 +21,7 @@
       '(
         ;; ac-slime ;;;; slime doesn't build
         ac-helm
+        ac-js2
         ace-jump-mode
         auto-complete
         clojure-mode
