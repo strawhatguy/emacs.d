@@ -1,0 +1,7 @@
+(require 'yasnippet)
+(setq yas/trigger-key (kbd "C-c <kp-multiply>"))
+(define-key yas/keymap (kbd "TAB") nil)
+(yas-global-mode 1)
+(mkdir "~/.emacs.d/snippets" t)
+(add-to-list 'yas/root-directory "~/.emacs.d/snippets")
+(yas/reload-all)
