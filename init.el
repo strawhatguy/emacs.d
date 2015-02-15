@@ -16,50 +16,14 @@
 ;;;; init-<package>.el files
 (setq el-get-user-package-directory "~/.emacs.d/package-init-files")
 
-;;;; install these packages by default
-(setq my-packages
-      '(
-        ;; ac-slime ;;;; slime doesn't build
-        ac-helm
-        ac-js2
-        ace-jump-mode
-        auto-complete
-        clojure-mode
-        coffee-mode
-        color-theme-zenburn
-        cssh
-	deft
-        dsvn
-        el-get
-        elnode
-        expand-region
-        flycheck
-        google-maps
-        google-this
-        google-translate
-        haskell-mode
-	helm
-        ido-ubiquitous
-        js2-mode
-        julia-mode
-        markdown-mode
-        magit
-        multiple-cursors
-        nodejs-repl
-        ;; nxhtml
-        oddmuse
-        puppet-mode
-	paredit
-        restclient
-        ruby-compilation
-        smex
-        switch-window
-        twittering-mode
-        vkill
-        wgrep
-        xcscope
-        yaml-mode
-        yasnippet
-        ))
+(defun get-packages-from-init-files ()
+  (if (file-exists-p el-get-user-package-directory)
+      (let*
+          ((files (directory-files el-get-user-package-directory nil "^init-.*\.el"))
+           (remove-init-ext (lambda (f)
+                              (file-name-sans-extension
+                               (mapconcat 'identity (cdr (split-string f "-")) "-")))))
+        (mapcar remove-init-ext files))
+    (message "There are no packages found in %s") el-get-user-package-directory))
 
-(el-get 'sync my-packages)
+(el-get 'sync (get-packages-from-init-files))
