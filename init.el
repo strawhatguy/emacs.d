@@ -19,11 +19,11 @@
 (defun get-packages-from-init-files ()
   (if (file-exists-p el-get-user-package-directory)
       (let*
-          ((files (directory-files el-get-user-package-directory nil "^init-.*\.el"))
+          ((files (directory-files el-get-user-package-directory nil "^init-.*\.el$"))
            (remove-init-ext (lambda (f)
                               (file-name-sans-extension
                                (mapconcat 'identity (cdr (split-string f "-")) "-")))))
         (mapcar remove-init-ext files))
-    (message "There are no packages found in %s") el-get-user-package-directory))
+    (list)))
 
 (el-get 'sync (get-packages-from-init-files))
