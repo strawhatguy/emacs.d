@@ -3,4 +3,5 @@
       '("http://nullprogram.com/feed/"
         "http://www.terminally-incoherent.com/blog/feed/"
         "http://planet.lisp.org/rss20.xml"
-        "http://emacsredux.com/atom.xml"))
+        "http://emacsredux.com/atom.xml"
+        "http://www.xkcd.com/atom.xml"))
