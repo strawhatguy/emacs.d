@@ -154,3 +154,7 @@
 (defalias 'auto-tail-revert-mode 'tail-mode)
 
 (random t) ;; Seed the random-number generator
+
+;;;; html-mode stuff
+(define-key html-mode-map (kbd "C-M-f") 'sgml-skip-tag-forward)
+(define-key html-mode-map (kbd "C-M-b") 'sgml-skip-tag-backward)
