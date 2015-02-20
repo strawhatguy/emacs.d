@@ -1,4 +1,3 @@
-(setq debug-on-error t)
 (setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH")))
 
 (and (fboundp 'menu-bar-mode)

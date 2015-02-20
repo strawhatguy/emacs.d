@@ -1,4 +1,5 @@
 ;;;; Load vanilla-emacs config
+(setq debug-on-error t)
 (load "~/.emacs.d/init-base-emacs-configuration")
 
 ;;;; Install el-get
@@ -27,3 +28,4 @@
     (list)))
 
 (el-get 'sync (get-packages-from-init-files))
+(setq debug-on-error nil)
