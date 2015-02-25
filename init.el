@@ -27,5 +27,9 @@
         (mapcar remove-init-ext files))
     (list)))
 
-(el-get 'sync (get-packages-from-init-files))
+(defun resync-el-get-packages-from-init-files ()
+  (interactive)
+  (el-get 'sync (get-packages-from-init-files)))
+
+(resync-el-get-packages-from-init-files)
 (setq debug-on-error nil)

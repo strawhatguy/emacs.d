@@ -13,3 +13,5 @@
 /.mc-lists.el
 /.smex-items
 /places
+/projectile-bookmarks.eld
+/package-init-files/disabled-*.el
