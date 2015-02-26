@@ -7,6 +7,7 @@
   (when (fboundp mode) (funcall mode -1)))
 (when (eq system-type 'darwin)
   (setq ns-function-modifier 'hyper))
+(setq inhibit-startup-screen t)
 
 ;;;; Stop making backup files
 (setq make-backup-files nil)
@@ -156,5 +157,7 @@
 (random t) ;; Seed the random-number generator
 
 ;;;; html-mode stuff
-(define-key html-mode-map (kbd "C-M-f") 'sgml-skip-tag-forward)
-(define-key html-mode-map (kbd "C-M-b") 'sgml-skip-tag-backward)
+(eval-after-load 'html-mode
+  '(progn
+     (define-key html-mode-map (kbd "C-M-f") 'sgml-skip-tag-forward)
+     (define-key html-mode-map (kbd "C-M-b") 'sgml-skip-tag-backward)))
