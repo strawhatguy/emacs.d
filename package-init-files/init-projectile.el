@@ -3,4 +3,5 @@
 (eval-after-load 'helm
   '(progn
      (require 'helm-projectile)
+     (setq projectile-completion-system 'helm)
      (helm-projectile-on)))

@@ -15,3 +15,4 @@
 /places
 /projectile-bookmarks.eld
 /package-init-files/disabled-*.el
+/projectile.cache
