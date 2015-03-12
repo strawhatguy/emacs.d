@@ -46,11 +46,20 @@
   (other-window (if count (- count) -1) all-frames))
 (global-set-key [(control shift iso-lefttab)] 'other-window-backwards)
 
+;;;; force C-tab to be other-window even in org-mode
+(define-key org-mode-map [(control tab)] nil)
+(define-key org-mode-map (kbd "C-c SPC") nil)
+;;;; other org-mode stuff
+(require 'org)
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(setq org-log-done t)
+
 ;;;; Make meta g to goto-line
 (global-set-key [(meta g)] 'goto-line)
 
 ;;;; set F5 key to revert-buffer
-(defun reset-buffer () 
+(defun reset-buffer ()
   "Resets a file-buffer reflect the file on disk, resetting modes"
   (interactive) (revert-buffer nil t nil))
 (global-set-key [f5] 'reset-buffer)
@@ -155,6 +164,21 @@
 (defalias 'auto-tail-revert-mode 'tail-mode)
 
 (random t) ;; Seed the random-number generator
+
+;; Delete trailing whitespce when saving
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+(setq mc/font-sizes '( "12" "14" "16" "20" "24"))
+
+(defun mc/cycle-font-size ()
+  "Cycle between 14, 16, 18, 24 pt fonts"
+  (interactive)
+  (let* ((size (car mc/font-sizes))
+         (font (concat "Monaco-" size)))
+    (progn (setq mc/font-sizes (-rotate -1 mc/font-sizes))
+           (set-default-font font))))
+
+(global-set-key [f2] 'mc/cycle-font-size)
 
 ;;;; html-mode stuff
 (eval-after-load 'html-mode
