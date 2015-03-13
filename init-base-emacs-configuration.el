@@ -1,4 +1,5 @@
 (setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH")))
+(add-to-list 'exec-path "/usr/local/bin")
 
 (and (fboundp 'menu-bar-mode)
      (not (eq system-type 'darwin))
@@ -47,10 +48,10 @@
 (global-set-key [(control shift iso-lefttab)] 'other-window-backwards)
 
 ;;;; force C-tab to be other-window even in org-mode
+(require 'org)
 (define-key org-mode-map [(control tab)] nil)
 (define-key org-mode-map (kbd "C-c SPC") nil)
 ;;;; other org-mode stuff
-(require 'org)
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
