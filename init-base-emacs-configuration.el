@@ -166,11 +166,9 @@
 
 (random t) ;; Seed the random-number generator
 
-;; Delete trailing whitespce when saving
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
-
 (setq mc/font-sizes '( "12" "14" "16" "20" "24"))
 
+;;;; cycle fonts
 (defun mc/cycle-font-size ()
   "Cycle between 14, 16, 18, 24 pt fonts"
   (interactive)
