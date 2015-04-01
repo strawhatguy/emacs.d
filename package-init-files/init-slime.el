@@ -26,6 +26,7 @@
      (setq slime-complete-symbol-function
            'slime-fuzzy-complete-symbol)
 
+     ;; Adapted from: https://gist.github.com/nonsequitur/179847
      (defsubst slime-company-active-p ()
        (derived-mode-p 'lisp-mode 'clojure-mode 'slime-repl-mode))
      
