@@ -9,4 +9,6 @@
 (eval-after-load 'magit
   (setq projectile-switch-project-action
         (lambda ()
-          (magit-status default-directory))))
+          (if current-prefix-arg
+            (magit-status default-directory)
+            (helm-projectile-find-file)))))

@@ -2,7 +2,6 @@
 (global-set-key (kbd "C-c g") 'magit-status)
 
 (setq magit-last-seen-setup-instructions "1.4.0")
-(setq magit-revert-item-confirm nil)
 
 ;;;; full screen magit-status
 (defadvice magit-status (around magit-fullscreen activate)

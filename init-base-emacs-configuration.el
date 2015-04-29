@@ -175,9 +175,10 @@
   (let* ((size (car mc/font-sizes))
          (font (concat "Monaco-" size)))
     (progn (setq mc/font-sizes (-rotate -1 mc/font-sizes))
-           (set-default-font font))))
+           (set-frame-font font))))
 
 (global-set-key [f2] 'mc/cycle-font-size)
+(mc/cycle-font-size)
 
 ;;;; html-mode stuff
 (eval-after-load 'html-mode
