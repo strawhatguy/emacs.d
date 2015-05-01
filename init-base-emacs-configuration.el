@@ -180,6 +180,9 @@
 (global-set-key [f2] 'mc/cycle-font-size)
 (mc/cycle-font-size)
 
+(add-hook 'eshell-mode-hook
+          (lambda () (company-mode -1)))
+
 ;;;; html-mode stuff
 (eval-after-load 'html-mode
   '(progn
