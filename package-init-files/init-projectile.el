@@ -7,8 +7,9 @@
      (helm-projectile-on)))
 
 (eval-after-load 'magit
-  (setq projectile-switch-project-action
-        (lambda ()
-          (if current-prefix-arg
-            (magit-status default-directory)
-            (helm-projectile-find-file)))))
+  '(eval-after-load 'helm
+     '(setq projectile-switch-project-action
+            (lambda ()
+              (if current-prefix-arg
+                  (magit-status default-directory)
+                (helm-projectile-find-file))))))

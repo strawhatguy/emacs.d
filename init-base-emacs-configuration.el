@@ -1,3 +1,4 @@
+(require 'cl)
 (setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH")))
 (add-to-list 'exec-path "/usr/local/bin")
 
@@ -12,6 +13,9 @@
 
 ;;;; Stop making backup files
 (setq make-backup-files nil)
+
+;;;; Stop making lock files
+(setq create-lockfiles nil)
 
 ;;;; toggle horizontal/vertical splitting
 (defun toggle-window-split ()
@@ -178,7 +182,7 @@
            (set-frame-font font))))
 
 (global-set-key [f2] 'mc/cycle-font-size)
-(mc/cycle-font-size)
+(set-frame-font "Monaco-12")
 
 (add-hook 'eshell-mode-hook
           (lambda () (company-mode -1)))
@@ -188,3 +192,28 @@
   '(progn
      (define-key html-mode-map (kbd "C-M-f") 'sgml-skip-tag-forward)
      (define-key html-mode-map (kbd "C-M-b") 'sgml-skip-tag-backward)))
+
+;;;; Indent after pasting (yanking) and killing text
+(dolist (command '(yank yank-pop))
+   (eval `(defadvice ,command (after indent-region activate)
+            (and (not current-prefix-arg)
+                 (member major-mode '(emacs-lisp-mode lisp-mode
+                                                      clojure-mode    scheme-mode
+                                                      haskell-mode    ruby-mode
+                                                      rspec-mode      python-mode
+                                                      c-mode          c++-mode
+                                                      objc-mode       latex-mode
+                                                      plain-tex-mode  js2-mode))
+                 (let ((mark-even-if-inactive transient-mark-mode))
+                   (indent-region (region-beginning) (region-end) nil))))))
+
+(defadvice kill-line (before check-position activate)
+  (if (member major-mode
+              '(emacs-lisp-mode scheme-mode lisp-mode
+                                c-mode c++-mode objc-mode
+                                latex-mode plain-tex-mode
+                                js2-mode))
+      (if (and (eolp) (not (bolp)))
+          (progn (forward-char 1)
+                 (just-one-space 0)
+                 (backward-char 1)))))
