@@ -1,9 +1,9 @@
 ;;;; Load vanilla-emacs config
 (setq debug-on-error t)
-(load "~/.emacs.d/init-base-emacs-configuration")
+(load (concat user-emacs-directory "init-base-emacs-configuration"))
 
 ;;;; Install el-get
-(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+(add-to-list 'load-path (concat user-emacs-directory "el-get/el-get"))
 (unless (require 'el-get nil 'noerror)
   (with-current-buffer
       (url-retrieve-synchronously
@@ -12,10 +12,10 @@
     (eval-print-last-sexp)))
 
 ;;;; local recipes
-(add-to-list 'el-get-recipe-path "~/.emacs.d/recipes")
+(add-to-list 'el-get-recipe-path (concat user-emacs-directory "recipes"))
 
 ;;;; init-<package>.el files
-(setq el-get-user-package-directory "~/.emacs.d/package-init-files")
+(setq el-get-user-package-directory (concat user-emacs-directory "package-init-files"))
 
 (defun get-packages-from-init-files ()
   (if (file-exists-p el-get-user-package-directory)
