@@ -4,6 +4,4 @@
 
 (setq-default flycheck-disabled-checkers
   (append flycheck-disabled-checkers
-    '(javascript-jshint)))
-
-(setq flycheck-temp-prefix ".#flycheck")
+    '(javascript-jshint json-jsonlint)))
