@@ -17,3 +17,6 @@
 
 (define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
 
+(define-key magit-status-mode-map (kbd "M-<tab>") nil)
+(define-key magit-status-mode-map (kbd "C-<tab>") nil)
+(define-key magit-status-mode-map (kbd "s-<tab>") nil)
