@@ -1,5 +1,6 @@
 (require 'company)
 (setq company-idle-delay 0.1)
+(setq company-minimum-prefix-length 2)
 (define-key company-active-map (kbd "<tab>") 'company-complete-selection)
 (define-key company-active-map (kbd "C-p") 'company-select-previous)
 (define-key company-active-map (kbd "C-n") 'company-select-next)

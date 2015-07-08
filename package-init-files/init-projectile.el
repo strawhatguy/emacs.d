@@ -11,5 +11,5 @@
      '(setq projectile-switch-project-action
             (lambda ()
               (if current-prefix-arg
-                  (magit-status default-directory)
+                  (magit-status)
                 (helm-projectile-find-file))))))
