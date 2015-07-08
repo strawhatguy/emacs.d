@@ -1,9 +1,9 @@
 (global-set-key (kbd "C-x w") 'elfeed)
-(setq elfeed-feeds
-      '("http://nullprogram.com/feed/"
-        "http://www.terminally-incoherent.com/blog/feed/"
-        "http://planet.lisp.org/rss20.xml"
-        "http://emacsredux.com/atom.xml"
-        "http://www.xkcd.com/atom.xml"
-        "http://feeds.feedburner.com/dailyjs"
-        ))
+
+(defun mc/elfeed-read-lines (file)
+  "Return a list of lines of FILE. Stolen from vc mode"
+  (with-temp-buffer
+    (insert-file-contents file)
+    (split-string (buffer-string) "\n" t)))
+
+(setq elfeed-feeds (mc/elfeed-read-lines (concat user-emacs-directory "elfeed-feeds")))
