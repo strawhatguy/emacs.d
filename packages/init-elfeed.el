@@ -6,4 +6,8 @@
     (insert-file-contents file)
     (split-string (buffer-string) "\n" t)))
 
-(setq elfeed-feeds (mc/elfeed-read-lines (concat user-emacs-directory "elfeed-feeds")))
+(defun mc/reload-elfeed-configuration ()
+  (interactive)
+  (setq elfeed-feeds (mc/elfeed-read-lines (concat user-emacs-directory "elfeed-feeds"))))
+
+(mc/reload-elfeed-configuration)
