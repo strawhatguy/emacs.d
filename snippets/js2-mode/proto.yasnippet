@@ -1,0 +1,9 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Name.prototype.method ...
+# key: proto
+# condition: (looking-back "^\s*proto")
+# expand-env: ((yas-indent-line 'fixed))
+# --
+${1:Constructor}.prototype.${2:method} = function ($3) {
+  $0
+};

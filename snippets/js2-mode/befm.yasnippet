@@ -1,0 +1,8 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: beforeEach(module(...))
+# key: befm
+# condition: (looking-back "^\s*befm")
+# expand-env: ((yas-indent-line 'fixed))
+# --
+beforeEach(module('$1'));
+$0
