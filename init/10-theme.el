@@ -3,9 +3,6 @@
 ;;;; set font
 (set-frame-font "Monaco-12")
 
-;;;; load the theme that's better than solarized
-(load-theme 'zenburn t)
-
 ;;;; Allow terminal colorization
 (ansi-color-for-comint-mode-on)
 
