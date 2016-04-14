@@ -235,7 +235,8 @@ user will be prompted to edit the search string first."
              (setq helm-projectile-fuzzy-match t))
 
 (use-package helm-swoop
-             :ensure t)
+             :ensure t
+             :bind (("M-i" . helm-swoop)))
 
 (use-package jasminejs-mode
              :ensure t
@@ -463,7 +464,7 @@ user will be prompted to edit the search string first."
              (yas-global-mode)
              (define-key yas-keymap (kbd "<return>") 'yas-next-field)
              (add-to-list 'yas/root-directory "~/.emacs.d/snippets")
-             (yas/reload-all))
+             (yas-reload-all))
 
 (use-package yatemplate
              :ensure t
@@ -474,9 +475,6 @@ user will be prompted to edit the search string first."
 (use-package zenburn-theme
              :ensure t)
 
-
-(message "My emacs directory is: %s" user-emacs-directory)
-
 (defun mc/reload-all-user-initialization-files ()
   (interactive)
   (mapcar (lambda (f)
@@ -485,5 +483,7 @@ user will be prompted to edit the search string first."
           (file-expand-wildcards (concat user-emacs-directory "init/*.el"))))
 
 (mc/reload-all-user-initialization-files)
+
+(message "My emacs directory is: %s" user-emacs-directory)
 
 (setq debug-on-error nil)
