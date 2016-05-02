@@ -1,7 +1,7 @@
 ;;;; theme changes here, although zenburn is pretty nice already
 
 ;;;; set font
-(set-frame-font "Monaco-12")
+(ignore-errors (set-frame-font "Monaco-12"))
 
 ;;;; Allow terminal colorization
 (ansi-color-for-comint-mode-on)
