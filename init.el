@@ -4,8 +4,10 @@
 (if (not (boundp 'user-emacs-directory))
     (setq user-emacs-directory "~/.emacs.d/"))
 
+;; set exec-path to include everything in the environment var PATH
 (setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH")))
-(add-to-list 'exec-path "/usr/local/bin")
+(mapc (lambda (path) (add-to-list 'exec-path path))
+      (split-string (getenv "PATH") ":" t))
 
 (require 'package)
 (setq package-enable-at-startup nil)
@@ -39,6 +41,9 @@
 (use-package bookmark+
   :ensure t)
 
+(use-package cargo
+  :ensure t)
+
 (use-package chicken-scheme
   :config
   (setq scheme-program-name "csi -:c")
@@ -65,6 +70,9 @@
 		(setq company-minimum-prefix-length 3)
 		(setq company-tooltip-margin 1)
 		(setq company-tooltip-minimum-width 30)))))
+
+
+(use-package company-racer :ensure t)
 
 (use-package cssh)
 
@@ -128,18 +136,18 @@ user will be prompted to edit the search string first."
 	 ("s--" . er/contract-region)))
 
 (use-package flycheck
-  :ensure t
-  :bind (:map flycheck-mode-map
-	      ("C-c ! h" . helm-flycheck))
-  :config
-  (add-hook 'after-init-hook #'global-flycheck-mode)
-  (setq flycheck-disabled-checkers '(javascript-jshint json-jsonlist))
-  (flycheck-add-mode 'javascript-eslint 'js-mode)
-  (flycheck-add-mode 'javascript-eslint 'js2-mode)
-  (flycheck-add-mode 'javascript-eslint 'web-mode))
+             :ensure t
+             :bind (:map flycheck-mode-map
+                         ("C-c ! h" . helm-flycheck))
+             :config
+             (add-hook 'after-init-hook #'global-flycheck-mode)
+             (setq flycheck-disabled-checkers '(javascript-jshint json-jsonlist))
+             (flycheck-add-mode 'javascript-eslint 'js-mode)
+             (flycheck-add-mode 'javascript-eslint 'js2-mode)
+             (flycheck-add-mode 'javascript-eslint 'web-mode)
+             (flycheck-set-checker-executable 'rust "/usr/local/bin/rustc"))
 
-(use-package flycheck-rust
-  :ensure t)
+(use-package flycheck-rust :ensure t)
 
 (use-package geiser
   :ensure t
@@ -378,6 +386,11 @@ user will be prompted to edit the search string first."
 (use-package puppet-mode
   :ensure t)
 
+(use-package racer :ensure t
+  :config
+  (setq racer-cmd "/usr/local/bin/racer")
+  (setq racer-rust-src-path "/Users/mcurry/Projects/rust/rust/src/"))
+
 (use-package rainbow-delimiters
   :ensure t)
 
@@ -391,8 +404,7 @@ user will be prompted to edit the search string first."
 	 ("Rakefile" . ruby-mode)
 	 ("\\.rake$" . ruby-mode)))
 
-(use-package rust-mode
-  :ensure t)
+(use-package rust-mode :ensure t)
 
 (use-package slime-company
   :ensure t)
