@@ -138,6 +138,9 @@ user will be prompted to edit the search string first."
   (flycheck-add-mode 'javascript-eslint 'js2-mode)
   (flycheck-add-mode 'javascript-eslint 'web-mode))
 
+(use-package flycheck-rust
+  :ensure t)
+
 (use-package geiser
   :ensure t
   :config
@@ -340,6 +343,16 @@ user will be prompted to edit the search string first."
 (use-package nodejs-repl
   :ensure t)
 
+(use-package nsis-mode
+  :ensure t
+  :config
+  (setq auto-mode-alist (append '(("\\.\\([Nn][Ss][Ii]\\)$" .
+                                   nsis-mode)) auto-mode-alist))
+
+  (setq auto-mode-alist (append '(("\\.\\([Nn][Ss][Hh]\\)$" .
+                                   nsis-mode)) auto-mode-alist))
+  )
+
 (use-package paredit
   :ensure t)
 
@@ -378,6 +391,8 @@ user will be prompted to edit the search string first."
 	 ("Rakefile" . ruby-mode)
 	 ("\\.rake$" . ruby-mode)))
 
+(use-package rust-mode
+  :ensure t)
 
 (use-package slime-company
   :ensure t)
