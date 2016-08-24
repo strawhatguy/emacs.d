@@ -16,3 +16,4 @@
 /projectile-bookmarks.eld
 /package-init-files/disabled-*.el
 /projectile.cache
+/server/server

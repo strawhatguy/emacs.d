@@ -14,10 +14,11 @@
 (add-to-list 'package-archives
              ;; The 't' means to append, so that MELPA comes after the more
              ;; stable ELPA archive.
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+             '("melpa" . "http://melpa.org/packages/") t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Switch to use-package
+(message "==== Switch to use-package ====")
 
 (package-initialize)
 
@@ -30,6 +31,7 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; packages
+(message "==== use-package packages ====")
 (use-package avy
   :ensure t
   :bind (("C-c SPC" . avy-goto-word-1)
@@ -72,28 +74,9 @@
 		(setq company-tooltip-minimum-width 30)))))
 
 
-(use-package company-racer :ensure t)
+;; (use-package company-racer :ensure t)
 
 (use-package cssh)
-
-(use-package dash-at-point
-  :init
-  (defun dash-search-at-point (&optional edit-search)
-    "Search for the word at point in Dash.
-If the optional prefix argument EDIT-SEARCH is specified, the
-user will be prompted to edit the search string first."
-    (interactive "P")
-    (let* ((thing (thing-at-point 'symbol)))
-      (dash-at-point-run-search
-       (if (or edit-search (null thing))
-	   (read-string "Dash search: " thing)
-	 thing))))
-  :bind (("C-c d p" . dash-at-point)
-	 ("C-c d P" . dash-search-at-point))
-  :config
-					;(rplacd (assoc 'js2-mode dash-at-point-mode-alist) 
-					;        "lodash,jquery,moment,angularjs,javascript,backbone,rambda")
-  )
 
 (use-package deft
   :ensure t
@@ -103,6 +86,9 @@ user will be prompted to edit the search string first."
   (setq deft-directory "~/.emacs.d/.deft")
   (setq deft-extension "org")
   (setq deft-text-mode 'org-mode))
+
+(use-package devdocs
+  :bind (("C-c d p" . devdocs-search)))
 
 (use-package dsvn)
 
@@ -145,7 +131,8 @@ user will be prompted to edit the search string first."
              (flycheck-add-mode 'javascript-eslint 'js-mode)
              (flycheck-add-mode 'javascript-eslint 'js2-mode)
              (flycheck-add-mode 'javascript-eslint 'web-mode)
-             (flycheck-set-checker-executable 'rust "/usr/local/bin/rustc"))
+             ;; (flycheck-set-checker-executable 'rust "/usr/local/bin/rustc")
+	     )
 
 (use-package flycheck-rust :ensure t)
 
@@ -386,11 +373,6 @@ user will be prompted to edit the search string first."
 (use-package puppet-mode
   :ensure t)
 
-(use-package racer :ensure t
-  :config
-  (setq racer-cmd "/usr/local/bin/racer")
-  (setq racer-rust-src-path "/Users/mcurry/Projects/rust/rust/src/"))
-
 (use-package rainbow-delimiters
   :ensure t)
 
@@ -498,7 +480,7 @@ user will be prompted to edit the search string first."
 
 (use-package zenburn-theme
   :ensure t)
-(message "here")
+
 (defun mc/reload-all-user-initialization-files ()
   (interactive)
   (mapcar (lambda (f)
