@@ -4,11 +4,6 @@
 (if (not (boundp 'user-emacs-directory))
     (setq user-emacs-directory "~/.emacs.d/"))
 
-;; set exec-path to include everything in the environment var PATH
-(setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH")))
-(mapc (lambda (path) (add-to-list 'exec-path path))
-      (split-string (getenv "PATH") ":" t))
-
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives
