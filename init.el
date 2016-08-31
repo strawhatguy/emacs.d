@@ -30,8 +30,8 @@
 (use-package avy
   :ensure t
   :bind (("C-c SPC" . avy-goto-word-1)
-	 ("M-C-g" . avy-goto-line)
-	 ("C-c ." . avy-goto-char-2))
+         ("M-C-g" . avy-goto-line)
+         ("C-c ." . avy-goto-char-2))
   :config
   (setq avy-background t))
 
@@ -53,20 +53,20 @@
 (use-package company
   :ensure t
   :bind (:map company-active-map
-	      ("<tab>" . company-complete-selection)
-	      ("C-p" . company-select-previous)
-	      ("C-n" . company-select-next)
-	      ("C-d" . company-show-doc-buffer)
-	      ("C-v" . company-show-location))
+              ("<tab>" . company-complete-selection)
+              ("C-p" . company-select-previous)
+              ("C-n" . company-select-next)
+              ("C-d" . company-show-doc-buffer)
+              ("C-v" . company-show-location))
   :config
   (add-hook 'after-init-hook
-	    (lambda ()
-	      (progn
-		(global-company-mode)
-		(setq company-idle-delay 0.1)
-		(setq company-minimum-prefix-length 3)
-		(setq company-tooltip-margin 1)
-		(setq company-tooltip-minimum-width 30)))))
+            (lambda ()
+              (progn
+                (global-company-mode)
+                (setq company-idle-delay 0.1)
+                (setq company-minimum-prefix-length 3)
+                (setq company-tooltip-margin 1)
+                (setq company-tooltip-minimum-width 30)))))
 
 
 ;; (use-package company-racer :ensure t)
@@ -104,7 +104,7 @@
   (defun mc/reload-elfeed-configuration ()
     (interactive)
     (setq elfeed-feeds 
-	  (mc/elfeed-read-lines (concat user-emacs-directory "elfeed-feeds"))))
+          (mc/elfeed-read-lines (concat user-emacs-directory "elfeed-feeds"))))
 
   (mc/reload-elfeed-configuration))
 
@@ -114,7 +114,7 @@
 (use-package expand-region
   :ensure t
   :bind (("s-=" . er/expand-region)
-	 ("s--" . er/contract-region)))
+         ("s--" . er/contract-region)))
 
 (use-package flycheck
              :ensure t
@@ -127,7 +127,7 @@
              (flycheck-add-mode 'javascript-eslint 'js2-mode)
              (flycheck-add-mode 'javascript-eslint 'web-mode)
              ;; (flycheck-set-checker-executable 'rust "/usr/local/bin/rustc")
-	     )
+             )
 
 (use-package flycheck-rust :ensure t)
 
@@ -135,13 +135,13 @@
   :ensure t
   :config
   (setq geiser-implementations-alist
-	'(((regexp "\\.scm$") chicken)
-	  ((regexp "\\.scm$") guile)
-	  ((regexp "\\.ss$") racket)
-	  ((regexp "\\.rkt$") racket)
-	  ((regexp "\\.release-info$") chicken)
-	  ((regexp "\\.meta$") chicken)
-	  ((regexp "\\.setup$") chicken))))
+        '(((regexp "\\.scm$") chicken)
+          ((regexp "\\.scm$") guile)
+          ((regexp "\\.ss$") racket)
+          ((regexp "\\.rkt$") racket)
+          ((regexp "\\.release-info$") chicken)
+          ((regexp "\\.meta$") chicken)
+          ((regexp "\\.setup$") chicken))))
 
 (use-package git-gutter
   :ensure t
@@ -158,9 +158,9 @@
   :ensure t
   :config
   (setq exec-path
-	(cons
-	 (concat (getenv "HOME") "/Library/Haskell/bin")
-	 exec-path))
+        (cons
+         (concat (getenv "HOME") "/Library/Haskell/bin")
+         exec-path))
 
   ;; Check for hindent on the system
   (require 'haskell-interactive-mode)
@@ -178,35 +178,35 @@
    '(haskell-process-use-presentation-mode t))
 
   (setq haskell-process-path-stack
-	(concat (getenv "HOME")
-		"/Library/Haskell/bin/stack")))
+        (concat (getenv "HOME")
+                "/Library/Haskell/bin/stack")))
 
 
 (use-package helm
   :ensure t
   :bind (("M-x" . helm-M-x)
-	 ("C-c h" . helm-command-prefix)
-	 :map helm-map
-	 ("<tab>" . helm-execute-persistent-action)
-	 ("C-z"   . helm-select-action))
+         ("C-c h" . helm-command-prefix)
+         :map helm-map
+         ("<tab>" . helm-execute-persistent-action)
+         ("C-z"   . helm-select-action))
   :config
   (when (executable-find "curl")
     (setq helm-google-suggest-use-curl-p t))
 
   (setq helm-quick-update                     t
-	helm-split-window-in-side-p           t
-	helm-buffers-fuzzy-matching           t
-	helm-recentf-fuzzy-match              t
-	helm-locate-fuzzy-match               t
-	helm-M-x-fuzzy-match                  t
-	helm-semantic-fuzzy-match             t
-	helm-apropos-fuzzy-match              t
-	helm-imenu-fuzzy-match                t
-	helm-lisp-fuzzy-completion            t
-	helm-move-to-line-cycle-in-source     t
-	helm-scroll-amount                    8
-	helm-ff-search-library-in-sexp        t
-	helm-ff-file-name-history-use-recentf t)
+        helm-split-window-in-side-p           t
+        helm-buffers-fuzzy-matching           t
+        helm-recentf-fuzzy-match              t
+        helm-locate-fuzzy-match               t
+        helm-M-x-fuzzy-match                  t
+        helm-semantic-fuzzy-match             t
+        helm-apropos-fuzzy-match              t
+        helm-imenu-fuzzy-match                t
+        helm-lisp-fuzzy-completion            t
+        helm-move-to-line-cycle-in-source     t
+        helm-scroll-amount                    8
+        helm-ff-search-library-in-sexp        t
+        helm-ff-file-name-history-use-recentf t)
 
   (helm-mode 1))
 
@@ -235,12 +235,12 @@
   :ensure t
   :config
   (add-hook 'jasminejs-mode-hook
-	    (lambda ()
-	      (jasminejs-add-snippets-to-yas-snippet-dirs)))
+            (lambda ()
+              (jasminejs-add-snippets-to-yas-snippet-dirs)))
 
   (add-hook 'jasminejs-mode-hook
-	    (lambda ()
-	      (local-set-key (kbd "C-c j") 'jasminejs-prefix-map)))
+            (lambda ()
+              (local-set-key (kbd "C-c j") 'jasminejs-prefix-map)))
 
   (add-hook 'js2-mode-hook (lambda () (jasminejs-mode))))
 
@@ -252,13 +252,13 @@
   :mode ("\\.js$" . js2-mode)
   :config
   (add-hook 'js2-mode-hook
-	    (lambda () (subword-mode)))
+            (lambda () (subword-mode)))
 
   ;; Setup company mode for js2-mode
   (add-hook 'js2-mode-hook
-	    (lambda ()
-	      (set (make-local-variable 'company-backends)
-		   '((company-dabbrev-code company-yasnippet)))))
+            (lambda ()
+              (set (make-local-variable 'company-backends)
+                   '((company-dabbrev-code company-yasnippet)))))
 
   (custom-set-variables
    '(js2-auto-insert-catch-block nil)
@@ -279,8 +279,8 @@
   :ensure t
   :config
   (add-hook 'json-mode-hook
-	    (lambda ()
-	      (setq js-indent-level 2))))
+            (lambda ()
+              (setq js-indent-level 2))))
 
 (use-package less-css-mode
   :ensure t
@@ -290,8 +290,8 @@
 (use-package magit
   :ensure t
   :bind (("C-c g" . magit-status)
-	 :map magit-status-mode-map
-	 ("q" . magit-quit-session))
+         :map magit-status-mode-map
+         ("q" . magit-quit-session))
 
   :config
 
@@ -318,11 +318,11 @@
 (use-package multiple-cursors
   :ensure t
   :bind (("C-S-c C-S-c" . mc/edit-lines)
-	 ("C-c C-S-c" . mc/edit-lines)
-	 ("C->" . mc/mark-next-like-this)
-	 ("C-<" . mc/mark-previous-like-this)
-	 ("C-c C-<" . mc/mark-all-like-this)
-	 ("C-c C->" . mc/mark-more-like-this-extended)))
+         ("C-c C-S-c" . mc/edit-lines)
+         ("C->" . mc/mark-next-like-this)
+         ("C-<" . mc/mark-previous-like-this)
+         ("C-c C-<" . mc/mark-all-like-this)
+         ("C-c C->" . mc/mark-more-like-this-extended)))
 
 (use-package neotree
   :ensure t
@@ -349,10 +349,10 @@
 (use-package popup
   :ensure t
   :bind (:map popup-menu-keymap
-	      ("M-n" . popup-next)
-	      ("M-p" . popup-previous)
-	      ("<tab>" . popup-next)
-	      ("<backtab>" . popup-previous)))
+              ("M-n" . popup-next)
+              ("M-p" . popup-previous)
+              ("<tab>" . popup-next)
+              ("<backtab>" . popup-previous)))
 
 (use-package projectile
   :ensure t
@@ -360,10 +360,10 @@
   (projectile-global-mode)
   (setq projectile-completion-system 'helm)
   (setq projectile-switch-project-action
-	(lambda ()
-	  (if current-prefix-arg
-	      (magit-status)
-	    (helm-projectile-find-file)))))
+        (lambda ()
+          (if current-prefix-arg
+              (magit-status)
+            (helm-projectile-find-file)))))
 
 (use-package puppet-mode
   :ensure t)
@@ -377,9 +377,9 @@
 (use-package ruby-mode
   :ensure t
   :mode (("\\.rb$" . ruby-mode)
-	 ("Gemfile" . ruby-mode)
-	 ("Rakefile" . ruby-mode)
-	 ("\\.rake$" . ruby-mode)))
+         ("Gemfile" . ruby-mode)
+         ("Rakefile" . ruby-mode)
+         ("\\.rake$" . ruby-mode)))
 
 (use-package rust-mode :ensure t)
 
@@ -390,27 +390,27 @@
   :ensure t
   :config
   (setq slime-lisp-implementations
-	'((sbcl ("/usr/local/bin/sbcl"))
-	  (ecl ("/usr/local/bin/ecl"))
-	  (clisp ("/usr/local/bin/clisp"))))
+        '((sbcl ("/usr/local/bin/sbcl"))
+          (ecl ("/usr/local/bin/ecl"))
+          (clisp ("/usr/local/bin/clisp"))))
   (slime-setup '(
-		 slime-asdf
-		 slime-autodoc
-		 slime-company
-		 slime-editing-commands
-		 slime-fancy
-		 slime-fancy-inspector
-		 slime-fontifying-fu
-		 slime-fuzzy
-		 slime-indentation
-		 slime-mdot-fu
-		 slime-package-fu
-		 slime-references
-		 slime-repl
-		 slime-sbcl-exts
-		 slime-scratch
-		 slime-xref-browser
-		 ))
+                 slime-asdf
+                 slime-autodoc
+                 slime-company
+                 slime-editing-commands
+                 slime-fancy
+                 slime-fancy-inspector
+                 slime-fontifying-fu
+                 slime-fuzzy
+                 slime-indentation
+                 slime-mdot-fu
+                 slime-package-fu
+                 slime-references
+                 slime-repl
+                 slime-sbcl-exts
+                 slime-scratch
+                 slime-xref-browser
+                 ))
   (slime-autodoc-mode))
 
 (use-package smartparens
@@ -458,9 +458,9 @@
   :demand t
   :bind
   (:map yas-minor-mode-map
-	("<tab>" . nil)
-	("TAB" . nil)
-	("C-c y e" . yas-expand))
+        ("<tab>" . nil)
+        ("TAB" . nil)
+        ("C-c y e" . yas-expand))
   :config
   (yas-global-mode)
   (define-key yas-keymap (kbd "<return>") 'yas-next-field)
