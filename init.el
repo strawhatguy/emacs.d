@@ -27,6 +27,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; packages
 (message "==== use-package packages ====")
+(use-package ag
+  :ensure t)
+
 (use-package avy
   :ensure t
   :bind (("C-c SPC" . avy-goto-word-1)
