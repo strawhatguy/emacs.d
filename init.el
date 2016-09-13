@@ -186,6 +186,7 @@
   :ensure t
   :bind (("M-x" . helm-M-x)
          ("C-c h" . helm-command-prefix)
+         ("C-x C-f" . helm-find-files)
          :map helm-map
          ("<tab>" . helm-execute-persistent-action)
          ("C-z"   . helm-select-action))
