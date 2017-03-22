@@ -72,7 +72,7 @@
                 (setq company-tooltip-minimum-width 30)))))
 
 
-;; (use-package company-racer :ensure t)
+(use-package company-racer :ensure t)
 
 (use-package cssh)
 
@@ -111,9 +111,6 @@
 
   (mc/reload-elfeed-configuration))
 
-(use-package elnode
-  :ensure t)
-
 (use-package expand-region
   :ensure t
   :bind (("s-=" . er/expand-region)
@@ -129,7 +126,6 @@
              (flycheck-add-mode 'javascript-eslint 'js-mode)
              (flycheck-add-mode 'javascript-eslint 'js2-mode)
              (flycheck-add-mode 'javascript-eslint 'web-mode)
-             ;; (flycheck-set-checker-executable 'rust "/usr/local/bin/rustc")
              )
 
 (use-package flycheck-rust :ensure t)
