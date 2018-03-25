@@ -45,13 +45,10 @@
   :ensure t)
 
 (use-package chicken-scheme
+  :ensure t
   :config
   (setq scheme-program-name "csi -:c")
   (add-hook 'scheme-mode-hook 'setup-chicken-scheme))
-
-(use-package clojure-mode)
-
-(use-package coffee-mode)
 
 (use-package company
   :ensure t
@@ -72,9 +69,10 @@
                 (setq company-tooltip-minimum-width 30)))))
 
 
-(use-package company-racer :ensure t)
-
-(use-package cssh)
+(use-package racer :ensure t
+  :config
+  (add-hook 'rust-mode-hook #'racer-mode)
+  (add-hook 'racer-mode-hook #'eldoc-mode))
 
 (use-package deft
   :ensure t
@@ -87,8 +85,6 @@
 
 (use-package devdocs
   :bind (("C-c d p" . devdocs-search)))
-
-(use-package dsvn)
 
 (use-package edit-server
   :ensure t
@@ -122,7 +118,7 @@
                          ("C-c ! h" . helm-flycheck))
              :config
              (add-hook 'after-init-hook #'global-flycheck-mode)
-             (setq flycheck-disabled-checkers '(javascript-jshint json-jsonlist))
+             (setq-default flycheck-disabled-checkers '(javascript-jshint json-jsonlist rust-cargo))
              (flycheck-add-mode 'javascript-eslint 'js-mode)
              (flycheck-add-mode 'javascript-eslint 'js2-mode)
              (flycheck-add-mode 'javascript-eslint 'web-mode)
@@ -133,14 +129,9 @@
 (use-package geiser
   :ensure t
   :config
-  (setq geiser-implementations-alist
-        '(((regexp "\\.scm$") chicken)
-          ((regexp "\\.scm$") guile)
-          ((regexp "\\.ss$") racket)
-          ((regexp "\\.rkt$") racket)
-          ((regexp "\\.release-info$") chicken)
-          ((regexp "\\.meta$") chicken)
-          ((regexp "\\.setup$") chicken))))
+  (delete '("\\.rkt\\'" . scheme-mode) auto-mode-alist)
+  :custom
+  (geiser-active-implementations (quote (guile chicken chez mit chibi))))
 
 (use-package git-gutter
   :ensure t
@@ -368,6 +359,9 @@
 (use-package puppet-mode
   :ensure t)
 
+(use-package racket-mode
+  :ensure t)
+
 (use-package rainbow-delimiters
   :ensure t)
 
@@ -381,7 +375,10 @@
          ("Rakefile" . ruby-mode)
          ("\\.rake$" . ruby-mode)))
 
-(use-package rust-mode :ensure t)
+(use-package rust-mode :ensure t
+  :config
+  (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+  (setq company-tooltip-align-annotations t))
 
 (use-package slime-company
   :ensure t)
