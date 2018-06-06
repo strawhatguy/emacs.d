@@ -71,10 +71,17 @@
                 (setq company-tooltip-margin 1)
                 (setq company-tooltip-minimum-width 30)))))
 
+(defun find-rust-src-racer-hook ()
+  (eldoc-mode)
+  (let* ((cmd (concatenate 'string  (executable-find "rustc") " --print sysroot"))
+         (res (trim-left (shell-command-to-string cmd)))
+         (src (concatenate 'string res "/lib/rustlib/src/rust/src")))
+    (setq racer-rust-src-path src)))
+
 (use-package racer :ensure t
   :config
   (add-hook 'rust-mode-hook #'racer-mode)
-  (add-hook 'racer-mode-hook #'eldoc-mode))
+  (add-hook 'racer-mode-hook #'find-rust-src-racer-hook))
 
 (use-package deft
   :ensure t
