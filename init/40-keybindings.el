@@ -20,6 +20,7 @@
 
 ;;;; buffer handling
 (global-set-key [f5] 'reset-buffer)
+(global-set-key [C-f5] 'clear-text-read-only-whole-buffer)
 
 ;;;; compiling
 (global-set-key [f8]   'recompile)
