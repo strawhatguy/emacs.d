@@ -1,5 +1,8 @@
 ;;;; custom functions here
 
+(require 'cl)
+(require 'dash)
+
 ;;;; vert <-> horiz split switch
 (defun toggle-window-split ()
   (interactive)
@@ -45,9 +48,9 @@
 ;;;; color the compilation buffer
 (require 'ansi-color)
 (defun colorize-compilation-buffer ()
-  (toggle-read-only)
+  (read-only-mode)
   (ansi-color-apply-on-region (point-min) (point-max))
-  (toggle-read-only))
+  (read-only-mode -1))
 
 ;;;; Advise the shell commands to name the buffer after the command itself
 (defadvice async-shell-command (before buffer-named-with-command
@@ -79,7 +82,7 @@
   (define-key Buffer-menu-mode-map (kbd "S") 'buffer-list-sort))
 
 ;;;; cycle fonts
-(lexical-let ((mc/font-sizes '( "12" "14" "16" "20" "24")))
+(lexical-let ((mc/font-sizes '("12" "14" "16" "20" "24")))
   (defun mc/cycle-font-size ()
     "Cycle between 14, 16, 18, 24 pt fonts"
     (interactive)
@@ -112,3 +115,8 @@
           (progn (forward-char 1)
                  (just-one-space 0)
                  (backward-char 1)))))
+
+(defun clear-text-read-only-whole-buffer ()
+  (interactive)
+  (let ((inhibit-read-only t))
+    (remove-text-properties (point-min) (point-max) '(read-only nil))))

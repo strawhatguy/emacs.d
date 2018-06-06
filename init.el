@@ -50,6 +50,9 @@
   (setq scheme-program-name "csi -:c")
   (add-hook 'scheme-mode-hook 'setup-chicken-scheme))
 
+(use-package cider
+  :ensure t)
+
 (use-package company
   :ensure t
   :bind (:map company-active-map
@@ -67,7 +70,6 @@
                 (setq company-minimum-prefix-length 3)
                 (setq company-tooltip-margin 1)
                 (setq company-tooltip-minimum-width 30)))))
-
 
 (use-package racer :ensure t
   :config
