@@ -360,7 +360,9 @@
         (lambda ()
           (if current-prefix-arg
               (magit-status)
-            (helm-projectile-find-file)))))
+            (helm-projectile-find-file))))
+  :bind (:map projectile-mode-map
+              ("C-c p" . projectile-command-map)))
 
 (use-package puppet-mode
   :ensure t)

@@ -22,10 +22,10 @@
 (setq compilation-scroll-output 'first-error)
 
 ;;;; allow color in compilation buffer
-(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
+(add-hook 'compilation-filter-hook 'mc/colorize-compilation-buffer)
 
 ;;;; buffer handling
-(add-hook 'Buffer-menu-mode-hook 'Buffer-mode-sort-key-hook)
+(add-hook 'Buffer-menu-mode-hook 'mc/Buffer-mode-sort-key-hook)
 
 ;;;; Don't spawn a new frame for the ediff commands, keep it all in one frame
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
