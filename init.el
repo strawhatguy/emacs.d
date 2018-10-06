@@ -361,7 +361,8 @@
           (if current-prefix-arg
               (magit-status)
             (helm-projectile-find-file))))
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+  :bind (:map projectile-mode-map
+              ("C-c p" . projectile-command-map)))
 
 (use-package puppet-mode
   :ensure t)

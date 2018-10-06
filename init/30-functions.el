@@ -4,7 +4,7 @@
 (require 'dash)
 
 ;;;; vert <-> horiz split switch
-(defun toggle-window-split ()
+(defun mc/toggle-window-split ()
   (interactive)
   (if (= (count-windows) 2)
       (let* ((this-win-buffer (window-buffer))
@@ -30,24 +30,24 @@
           (if this-win-2nd (other-window 1))))))
 
 ;;;; switching between buffers backwards
-(defun other-window-backwards (&optional count all-frames)
+(defun mc/other-window-backwards (&optional count all-frames)
   (interactive)
   (other-window (if count (- count) -1) all-frames))
 
 ;;;; set F5 key to revert-buffer
-(defun reset-buffer ()
+(defun mc/reset-buffer ()
   "Resets a file-buffer reflect the file on disk, resetting modes"
   (interactive) (revert-buffer nil t nil))
 
 ;;;; Ask for directory of the project to compile
-(defun compile-asking-directory (top-level)
+(defun mc/compile-asking-directory (top-level)
   (interactive "DProject toplevel directory: ")
   (let ((default-directory top-level))
     (call-interactively 'compile)))
 
 ;;;; color the compilation buffer
 (require 'ansi-color)
-(defun colorize-compilation-buffer ()
+(defun mc/colorize-compilation-buffer ()
   (read-only-mode)
   (ansi-color-apply-on-region (point-min) (point-max))
   (read-only-mode -1))
@@ -70,7 +70,7 @@
     (setq default-directory dir)))
 
 ;;;; Buffer menu mode sort function
-(defun buffer-list-sort (column)
+(defun mc/buffer-list-sort (column)
   (interactive "SColumn to sort by (one of name,size,mode,file,time [default=time]): ")
   (case column
     (name (Buffer-menu-sort 3))
@@ -78,8 +78,8 @@
     (mode (Buffer-menu-sort 5))
     (file (Buffer-menu-sort 6))
     (t    (Buffer-menu-sort nil))))
-(defun Buffer-mode-sort-key-hook ()
-  (define-key Buffer-menu-mode-map (kbd "S") 'buffer-list-sort))
+(defun mc/Buffer-mode-sort-key-hook ()
+  (define-key Buffer-menu-mode-map (kbd "S") 'mc/buffer-list-sort))
 
 ;;;; cycle fonts
 (lexical-let ((mc/font-sizes '("12" "14" "16" "20" "24")))
@@ -116,7 +116,20 @@
                  (just-one-space 0)
                  (backward-char 1)))))
 
-(defun clear-text-read-only-whole-buffer ()
+(defun mc/clear-text-read-only-whole-buffer ()
   (interactive)
   (let ((inhibit-read-only t))
     (remove-text-properties (point-min) (point-max) '(read-only nil))))
+
+(defun mc/locally-tabs-mode ()
+  (interactive)
+  (setq-local indent-tabs-mode t)
+  (setq-local tab-width 2))
+
+(defun mc/add-js-tab-hooks ()
+  (interactive)
+  (add-hook 'js2-mode-hook 'mc/locally-tabs-mode))
+
+(defun mc/rem-js-tab-hooks ()
+  (interactive)
+  (remove-hook 'js2-mode-hook 'mc/locally-tabs-mode))

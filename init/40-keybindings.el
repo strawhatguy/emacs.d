@@ -1,11 +1,11 @@
 ;;;; custom key bindings go here
 
 ;;;; window splitting
-(global-set-key [f9]   'toggle-window-split)
+(global-set-key [f9]   'mc/toggle-window-split)
 
 ;;;; switching buffers
 (global-set-key [(control tab)] 'other-window)
-(global-set-key [(control shift iso-lefttab)] 'other-window-backwards)
+(global-set-key [(control shift iso-lefttab)] 'mc/other-window-backwards)
 
 ;;;; force C-tab to be other-window even in org-mode
 (require 'org)
@@ -19,12 +19,12 @@
 (global-set-key [(meta g)] 'goto-line)
 
 ;;;; buffer handling
-(global-set-key [f5] 'reset-buffer)
-(global-set-key [C-f5] 'clear-text-read-only-whole-buffer)
+(global-set-key [f5] 'mc/reset-buffer)
+(global-set-key [C-f5] 'mc/clear-text-read-only-whole-buffer)
 
 ;;;; compiling
 (global-set-key [f8]   'recompile)
-(global-set-key [S-f8] 'compile-asking-directory)
+(global-set-key [S-f8] 'mc/compile-asking-directory)
 (global-set-key [C-S-f8] 'compile)
 
 ;;;; Make C-h C-s go to apropos (basically apropos-symbol)
