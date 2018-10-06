@@ -375,6 +375,9 @@
 (use-package restclient
   :ensure t)
 
+(use-package ripgrep
+  :ensure t)
+
 (use-package ruby-mode
   :ensure t
   :mode (("\\.rb$" . ruby-mode)
