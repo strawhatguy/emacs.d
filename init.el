@@ -306,8 +306,7 @@
   (setq magit-last-seen-setup-instructions "1.4.0")
   (define-key magit-mode-map (kbd "M-<tab>") nil)
   (define-key magit-mode-map (kbd "C-<tab>") nil)
-  (define-key magit-mode-map (kbd "s-<tab>") nil)
-  (setq magit-log-arguments '("--decorate")))
+  (define-key magit-mode-map (kbd "s-<tab>") nil))
 
 (use-package markdown-mode
   :ensure t)

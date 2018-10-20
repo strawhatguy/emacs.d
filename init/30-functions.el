@@ -128,8 +128,20 @@
 
 (defun mc/add-js-tab-hooks ()
   (interactive)
-  (add-hook 'js2-mode-hook 'mc/locally-tabs-mode))
+  (add-hook 'js2-mode-hook 'mc/locally-tabs-mode)
+  (add-hook 'json-mode-hook 'mc/locally-tabs-mode))
 
 (defun mc/rem-js-tab-hooks ()
   (interactive)
-  (remove-hook 'js2-mode-hook 'mc/locally-tabs-mode))
+  (remove-hook 'js2-mode-hook 'mc/locally-tabs-mode)
+  (remove-hook 'json-mode-hook 'mc/locally-tabs-mode))
+
+(defun mc/add-java-tab-hooks ()
+  (interactive)
+  (add-hook 'java-mode-hook 'mc/locally-tabs-mode)
+  (add-hook 'nxml-mode-hook 'mc/locally-tabs-mode))
+
+(defun mc/rem-java-tab-hooks ()
+  (interactive)
+  (remove-hook 'java-mode-hook 'mc/locally-tabs-mode)
+  (remove-hook 'nxml-mode-hook 'mc/locally-tabs-mode))
