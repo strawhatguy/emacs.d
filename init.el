@@ -71,7 +71,7 @@
 (defun find-rust-src-racer-hook ()
   (eldoc-mode)
   (let* ((cmd (concatenate 'string  (executable-find "rustc") " --print sysroot"))
-         (res (trim-left (shell-command-to-string cmd)))
+         (res (s-trim (shell-command-to-string cmd)))
          (src (concatenate 'string res "/lib/rustlib/src/rust/src")))
     (setq racer-rust-src-path src)))
 
@@ -164,15 +164,6 @@
 
   (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
 
-  (custom-set-variables
-   '(haskell-process-args-cabal-repl '("--ghc-option=-ferror-spans"))
-   '(haskell-process-auto-import-loaded-modules t)
-   '(haskell-process-log t)
-   '(haskell-process-suggest-remove-import-lines t)
-   '(haskell-process-type 'stack-ghci)
-   '(haskell-tags-on-save t)
-   '(haskell-process-use-presentation-mode t))
-
   (setq haskell-process-path-stack
         (concat (getenv "HOME")
                 "/Library/Haskell/bin/stack")))
@@ -211,6 +202,9 @@
   :ensure t)
 
 (use-package helm-flycheck
+  :ensure t)
+
+(use-package helm-cider
   :ensure t)
 
 (use-package helm-company
@@ -256,12 +250,6 @@
             (lambda ()
               (set (make-local-variable 'company-backends)
                    '((company-dabbrev-code company-yasnippet)))))
-
-  (custom-set-variables
-   '(js2-auto-insert-catch-block nil)
-   '(js2-basic-offset 2)
-   '(js2-bounce-indent-p nil)
-   '(js2-mode-indent-ignore-first-tab nil))
 
   (eval-after-load 'js2-mode
     (progn (flycheck-mode))))
@@ -355,6 +343,7 @@
   :config
   (projectile-mode 1)
   (setq projectile-completion-system 'helm)
+  (setq projectile-generic-command "fd . -0")
   (setq projectile-switch-project-action
         (lambda ()
           (if current-prefix-arg
@@ -375,6 +364,9 @@
 (use-package restclient
   :ensure t)
 
+(use-package ripgrep
+  :ensure t)
+
 (use-package ruby-mode
   :ensure t
   :mode (("\\.rb$" . ruby-mode)
@@ -387,6 +379,9 @@
   (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
   (setq company-tooltip-align-annotations t))
 
+(use-package s
+  :ensure t)
+
 (use-package slime-company
   :ensure t)
 
@@ -395,6 +390,7 @@
   :config
   (setq slime-lisp-implementations
         '((sbcl ("/usr/local/bin/sbcl"))
+          (abcl ("/usr/local/bin/abcl"))
           (ecl ("/usr/local/bin/ecl"))
           (clisp ("/usr/local/bin/clisp"))))
   (slime-setup '(
@@ -423,6 +419,13 @@
   (require 'smartparens-config)
   (smartparens-global-mode t)
   (sp-use-paredit-bindings))
+
+(use-package spaceline
+  :ensure t
+  :config
+  (spaceline-spacemacs-theme)
+  (spaceline-helm-mode t)
+  (spaceline-info-mode t))
 
 (use-package switch-window
   :ensure t)
@@ -489,28 +492,6 @@
 (message "My emacs directory is: %s" user-emacs-directory)
 
 (setq debug-on-error nil)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(haskell-process-args-cabal-repl (quote ("--ghc-option=-ferror-spans")))
- '(haskell-process-auto-import-loaded-modules t)
- '(haskell-process-log t)
- '(haskell-process-suggest-remove-import-lines t)
- '(haskell-process-type (quote stack-ghci))
- '(haskell-process-use-presentation-mode t)
- '(haskell-tags-on-save t)
- '(js-indent-level 2)
- '(js2-auto-insert-catch-block nil)
- '(js2-bounce-indent-p nil)
- '(js2-mode-indent-ignore-first-tab nil)
- '(package-selected-packages
-   (quote
-    (zenburn-theme yatemplate yaml-mode xcscope wgrep web-mode use-package twittering-mode switch-window smartparens slime-company restclient rainbow-delimiters racket-mode racer puppet-mode paredit nsis-mode nodejs-repl neotree magit json-mode js2-refactor jenkins jasminejs-mode helm-swoop helm-projectile helm-flycheck helm-dash helm-company helm-ag haskell-mode google-translate google-this git-gutter geiser flycheck-rust expand-region elfeed edit-server deft chicken-scheme cargo avy ag))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
+(setq custom-file (concat user-emacs-directory "custom.el"))
+(load (custom-file))
