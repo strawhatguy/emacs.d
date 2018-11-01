@@ -121,15 +121,35 @@
   (let ((inhibit-read-only t))
     (remove-text-properties (point-min) (point-max) '(read-only nil))))
 
+(defun mc/projectile-run-etags ()
+  (interactive)
+  (let ((old-dir (pwd)))
+    (cd (projectile-project-root))
+    (shell-command "rm -f TAGS && find . -type f -print0 | xargs -0 etags -a")
+    (cd old-dir)))
+
 (defun mc/locally-tabs-mode ()
   (interactive)
   (setq-local indent-tabs-mode t)
+  (setq-local c-basic-offset 2)
   (setq-local tab-width 2))
 
 (defun mc/add-js-tab-hooks ()
   (interactive)
-  (add-hook 'js2-mode-hook 'mc/locally-tabs-mode))
+  (add-hook 'js2-mode-hook 'mc/locally-tabs-mode)
+  (add-hook 'json-mode-hook 'mc/locally-tabs-mode))
 
 (defun mc/rem-js-tab-hooks ()
   (interactive)
-  (remove-hook 'js2-mode-hook 'mc/locally-tabs-mode))
+  (remove-hook 'js2-mode-hook 'mc/locally-tabs-mode)
+  (remove-hook 'json-mode-hook 'mc/locally-tabs-mode))
+
+(defun mc/add-java-tab-hooks ()
+  (interactive)
+  (add-hook 'java-mode-hook 'mc/locally-tabs-mode)
+  (add-hook 'nxml-mode-hook 'mc/locally-tabs-mode))
+
+(defun mc/rem-java-tab-hooks ()
+  (interactive)
+  (remove-hook 'java-mode-hook 'mc/locally-tabs-mode)
+  (remove-hook 'nxml-mode-hook 'mc/locally-tabs-mode))
