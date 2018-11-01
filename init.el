@@ -204,6 +204,9 @@
 (use-package helm-flycheck
   :ensure t)
 
+(use-package helm-cider
+  :ensure t)
+
 (use-package helm-company
   :ensure t)
 
@@ -416,6 +419,13 @@
   (require 'smartparens-config)
   (smartparens-global-mode t)
   (sp-use-paredit-bindings))
+
+(use-package spaceline
+  :ensure t
+  :config
+  (spaceline-spacemacs-theme)
+  (spaceline-helm-mode t)
+  (spaceline-info-mode t))
 
 (use-package switch-window
   :ensure t)

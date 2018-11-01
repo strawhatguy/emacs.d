@@ -12,8 +12,3 @@
 
 (setq split-height-threshold 80)
 (setq split-width-threshold  240)
-
-;;;; spaceline everywhere
-(spaceline-spacemacs-theme)
-(spaceline-helm-mode t)
-(spaceline-info-mode t)
