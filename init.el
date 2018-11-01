@@ -71,7 +71,7 @@
 (defun find-rust-src-racer-hook ()
   (eldoc-mode)
   (let* ((cmd (concatenate 'string  (executable-find "rustc") " --print sysroot"))
-         (res (trim-left (shell-command-to-string cmd)))
+         (res (s-trim (shell-command-to-string cmd)))
          (src (concatenate 'string res "/lib/rustlib/src/rust/src")))
     (setq racer-rust-src-path src)))
 
@@ -340,6 +340,7 @@
   :config
   (projectile-mode 1)
   (setq projectile-completion-system 'helm)
+  (setq projectile-generic-command "fd . -0")
   (setq projectile-switch-project-action
         (lambda ()
           (if current-prefix-arg
@@ -375,6 +376,9 @@
   (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
   (setq company-tooltip-align-annotations t))
 
+(use-package s
+  :ensure t)
+
 (use-package slime-company
   :ensure t)
 
@@ -383,6 +387,7 @@
   :config
   (setq slime-lisp-implementations
         '((sbcl ("/usr/local/bin/sbcl"))
+          (abcl ("/usr/local/bin/abcl"))
           (ecl ("/usr/local/bin/ecl"))
           (clisp ("/usr/local/bin/clisp"))))
   (slime-setup '(
