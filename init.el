@@ -113,6 +113,9 @@
 
   (mc/reload-elfeed-configuration))
 
+(use-package exec-path-from-shell
+  :ensure t)
+
 (use-package expand-region
   :ensure t
   :bind (("s-=" . er/expand-region)
@@ -221,6 +224,10 @@
 (use-package helm-swoop
   :ensure t
   :bind (("M-i" . helm-swoop)))
+
+(use-package indium
+  :config
+  (add-hook 'js2-mode-hook #'indium-interaction-mode))
 
 (use-package jasminejs-mode
   :ensure t

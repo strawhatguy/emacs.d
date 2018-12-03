@@ -17,5 +17,5 @@
 
 (when (eq system-type 'darwin) (mc/darwin-settings))
 
-(when (not (eq system-type 'windows-nt)) (mc/not-windows-settings))
-
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
