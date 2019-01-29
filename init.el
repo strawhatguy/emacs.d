@@ -248,6 +248,8 @@
 (use-package js2-mode
   :ensure t
   :mode ("\\.js$" . js2-mode)
+  :bind (:map js2-mode-map
+         ("M-." . nil))
   :config
   (add-hook 'js2-mode-hook
             (lambda () (subword-mode)))
@@ -266,6 +268,12 @@
   :config
   (add-hook 'js2-mode-hook 'js2-refactor-mode)
   (js2r-add-keybindings-with-prefix "C-c C-m"))
+
+(use-package xref-js2
+  :ensure t
+  :config
+  (add-hook 'js2-mode-hook (lambda ()
+                             (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t))))
 
 (use-package json-mode
   :ensure t
