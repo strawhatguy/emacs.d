@@ -323,12 +323,6 @@
          ("C-c C-<" . mc/mark-all-like-this)
          ("C-c C->" . mc/mark-more-like-this-extended)))
 
-(use-package neotree
-  :ensure t
-  :bind ("<f12>" . neotree-toggle)
-  :config
-  (setq neo-window-width 50))
-
 (use-package nodejs-repl
   :ensure t)
 
@@ -443,6 +437,32 @@
   (spaceline-info-mode t))
 
 (use-package switch-window
+  :ensure t)
+
+(use-package treemacs
+  :ensure t
+  :defer t
+  :bind
+  (:map global-map
+        ("C-x t s"   . treemacs-select-window)
+        ("C-x t 1"   . treemacs-delete-other-windows)
+        ("C-x t t"   . treemacs)
+        ("<f12>"     . treemacs)
+        ("C-x t B"   . treemacs-bookmark)
+        ("C-x t C-t" . treemacs-find-file)
+        ("C-x t M-t" . treemacs-find-tag)))
+
+(use-package treemacs-projectile
+  :after treemacs projectile
+  :ensure t)
+
+(use-package treemacs-icons-dired
+  :after treemacs dired
+  :ensure t
+  :config (treemacs-icons-dired-mode))
+
+(use-package treemacs-magit
+  :after treemacs magit
   :ensure t)
 
 (use-package twittering-mode
