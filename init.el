@@ -216,6 +216,9 @@
 (use-package helm-dash
   :ensure t)
 
+(use-package helm-lsp
+  :ensure t :after lsp)
+
 (use-package helm-projectile
   :ensure t
   :config
@@ -281,6 +284,27 @@
   (add-hook 'json-mode-hook
             (lambda ()
               (setq js-indent-level 2))))
+
+(use-package lsp-mode :commands lsp :ensure t
+  :config
+  (setq lsp-prefer-flymake nil)
+  (add-hook 'js2-mode-hook 'lsp))
+
+(use-package lsp-ui :ensure t :after lsp
+  :config
+  (add-hook 'lsp-after-open-hook (lambda () (lsp-ui-flycheck-enable 1))))
+(use-package lsp-java :ensure t :after lsp
+  :config (add-hook 'java-mode-hook 'lsp))
+
+(use-package dap-mode
+  :ensure t :after lsp-mode
+  :config
+  (dap-mode t)
+  (dap-ui-mode t))
+
+(use-package company-lsp :ensure t)
+(use-package dap-java :after lsp-java)
+(use-package lsp-java-treemacs :after treemacs)
 
 (use-package less-css-mode
   :ensure t
