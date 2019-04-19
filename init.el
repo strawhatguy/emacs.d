@@ -85,9 +85,11 @@
   :bind
   (("<f7>" . deft))
   :config
-  (setq deft-directory "~/.emacs.d/.deft")
-  (setq deft-extension "org")
-  (setq deft-text-mode 'org-mode))
+  (unless (file-exists-p "~/Notes")
+    (mkdir "~/Notes"))
+  (setq deft-directory "~/Notes")
+  (setq deft-extensions '("org" "md"))
+  (setq deft-default-extension "org"))
 
 (use-package devdocs
   :bind (("C-c d p" . devdocs-search)))
