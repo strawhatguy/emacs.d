@@ -45,6 +45,11 @@
   (let ((default-directory top-level))
     (call-interactively 'compile)))
 
+;;;; Compile from project root
+(defun mc/compile-from-project-root ()
+  (interactive)
+  (mc/compile-asking-directory (projectile-project-root)))
+
 ;;;; color the compilation buffer
 (require 'ansi-color)
 (defun mc/colorize-compilation-buffer ()

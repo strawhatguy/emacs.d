@@ -24,8 +24,8 @@
 
 ;;;; compiling
 (global-set-key [f8]   'recompile)
-(global-set-key [S-f8] 'mc/compile-asking-directory)
-(global-set-key [C-S-f8] 'compile)
+(global-set-key [S-f8] 'mc/compile-from-project-root)
+(global-set-key [C-S-f8] 'mc/compile-asking-directory)
 
 ;;;; Make C-h C-s go to apropos (basically apropos-symbol)
 (global-set-key [(control h) (control s)] 'apropos)
@@ -45,6 +45,9 @@
 
 ;;;; cycle fonts
 (global-set-key [f2] 'mc/cycle-font-size)
+
+;;;; toggle whitespace mode
+(global-set-key (kbd "C-c C-w") 'whitespace-mode)
 
 ;;;; fix html-mode defaults
 (require 'sgml-mode)
