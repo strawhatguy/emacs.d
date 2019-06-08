@@ -17,3 +17,13 @@
 /package-init-files/disabled-*.el
 /projectile.cache
 /server/
+.cache
+.chicken-scheme-symbols-dump.el
+.lsp-session-v1
+eclipse.jdt.ls
+emojis/
+init/99-*.el
+remacs.el
+templates/
+transient/
+workspace/
