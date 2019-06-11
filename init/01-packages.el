@@ -41,7 +41,10 @@
   (add-hook 'scheme-mode-hook 'setup-chicken-scheme))
 
 (use-package cider
-  :ensure t)
+  :ensure t
+  :config
+  (add-hook 'cider-repl-mode-hook #'cider-company-enable-fuzzy-completion)
+  (add-hook 'cider-mode-hook #'cider-company-enable-fuzzy-completion))
 
 (use-package company
   :ensure t
