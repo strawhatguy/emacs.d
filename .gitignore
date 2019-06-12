@@ -27,3 +27,10 @@ remacs.el
 templates/
 transient/
 workspace/
+.dap-breakpoints
+abbrev_defs
+bookmarks
+java-ide/
+network-security.data
+semanticdb/
+tramp

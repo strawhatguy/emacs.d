@@ -27,6 +27,9 @@
 ;;;; buffer handling
 (add-hook 'Buffer-menu-mode-hook 'mc/Buffer-mode-sort-key-hook)
 
+;;;; lose the unnecessary whitespace
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
 ;;;; Don't spawn a new frame for the ediff commands, keep it all in one frame
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 ;;;; Have ediff buffers show in a side-by-side view
