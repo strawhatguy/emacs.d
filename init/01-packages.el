@@ -9,9 +9,9 @@
 (message "==== Switch to use-package ====")
 
 (package-initialize)
-(package-refresh-contents)
 
 (unless (package-installed-p 'use-package)
+  (package-refresh-contents)
   (package-install 'use-package))
 
 (eval-when-compile
@@ -20,8 +20,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; packages
 (message "==== use-package packages ====")
-(use-package ag
-  :ensure t)
 
 (use-package avy
   :ensure t
@@ -75,6 +73,10 @@
   :config
   (add-hook 'rust-mode-hook #'racer-mode)
   (add-hook 'racer-mode-hook #'find-rust-src-racer-hook))
+
+(use-package deadgrep
+  :ensure t
+  :bind (("C-c C-r" . deadgrep)))
 
 (use-package deft
   :ensure t
@@ -434,7 +436,13 @@
   :config
   (require 'smartparens-config)
   (smartparens-global-mode t)
-  (sp-use-paredit-bindings))
+  (sp-use-paredit-bindings)
+  :bind
+  (:map smartparens-mode-map
+        ("C-c f" . sp-forward-slurp-sexp)
+        ("C-c b" . sp-backward-slurp-sexp)
+        ("C-c C-f" . sp-forward-barf-sexp)
+        ("C-c C-b" . sp-backward-barf-sexp)))
 
 (use-package spaceline
   :ensure t
