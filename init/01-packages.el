@@ -345,6 +345,8 @@
                                    nsis-mode)) auto-mode-alist))
   )
 
+(use-package nix-mode :ensure t)
+
 (use-package paredit
   :ensure t)
 

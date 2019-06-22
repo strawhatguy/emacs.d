@@ -3,7 +3,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(geiser-active-implementations (quote (guile chicken chez mit chibi)))
+ '(geiser-active-implementations (quote (guile chicken chez mit chibi)) t)
  '(haskell-process-args-cabal-repl (quote ("--ghc-option=-ferror-spans")))
  '(haskell-process-auto-import-loaded-modules t)
  '(haskell-process-log t)
@@ -17,7 +17,7 @@
  '(js2-mode-indent-ignore-first-tab nil)
  '(package-selected-packages
    (quote
-    (deadgrep devdocs company-lsp lsp-ui helm-lsp lsp-clangd lsp-java lsp-mode exec-path-from-shell xref-js2 indium cider helm-cider projectile-ripgrep ripgrep slack zenburn-theme yatemplate yaml-mode xcscope wgrep web-mode use-package twittering-mode switch-window smartparens slime-company restclient rainbow-delimiters racket-mode racer puppet-mode paredit nsis-mode nodejs-repl neotree magit json-mode js2-refactor jenkins jasminejs-mode helm-swoop helm-projectile helm-flycheck helm-dash helm-company helm-ag haskell-mode google-translate google-this git-gutter geiser flycheck-rust expand-region elfeed deft chicken-scheme cargo avy ag)))
+    (nix-mode devdocs deadgrep xref-js2 indium cider helm-cider projectile-ripgrep ripgrep slack zenburn-theme yatemplate yaml-mode xcscope wgrep web-mode use-package twittering-mode switch-window smartparens slime-company restclient rainbow-delimiters racket-mode racer puppet-mode paredit nsis-mode nodejs-repl neotree magit json-mode js2-refactor jenkins jasminejs-mode helm-swoop helm-projectile helm-flycheck helm-dash helm-company helm-ag haskell-mode google-translate google-this git-gutter geiser flycheck-rust expand-region elfeed edit-server deft chicken-scheme cargo avy ag)))
  '(recenter-positions (quote (middle))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
