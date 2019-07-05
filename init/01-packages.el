@@ -93,6 +93,8 @@
   :ensure t
   :bind (("C-c d p" . devdocs-search)))
 
+(use-package edn :ensure t)
+
 (use-package elfeed
   :ensure t
   :bind ("C-x w" . elfeed)
@@ -450,6 +452,14 @@
   (spaceline-spacemacs-theme)
   (spaceline-helm-mode t)
   (spaceline-info-mode t))
+
+(use-package string-inflection :ensure t
+  :bind
+  (:map global-map
+        ("C-c i" . string-inflection-all-cycle)
+        ("C-c U" . string-inflection-underscore)
+        ("C-c K" . string-inflection-kebab-case)
+        ("C-c C" . string-inflection-camelcase)))
 
 (use-package switch-window
   :ensure t)

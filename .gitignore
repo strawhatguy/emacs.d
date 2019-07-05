@@ -27,3 +27,4 @@ remacs.el
 templates/
 transient/
 workspace/
+.dap-breakpoints

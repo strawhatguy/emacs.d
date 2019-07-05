@@ -17,7 +17,7 @@
  '(js2-mode-indent-ignore-first-tab nil)
  '(package-selected-packages
    (quote
-    (deadgrep devdocs company-lsp lsp-ui helm-lsp lsp-clangd lsp-java lsp-mode exec-path-from-shell xref-js2 indium cider helm-cider projectile-ripgrep ripgrep slack zenburn-theme yatemplate yaml-mode xcscope wgrep web-mode use-package twittering-mode switch-window smartparens slime-company restclient rainbow-delimiters racket-mode racer puppet-mode paredit nsis-mode nodejs-repl neotree magit json-mode js2-refactor jenkins jasminejs-mode helm-swoop helm-projectile helm-flycheck helm-dash helm-company helm-ag haskell-mode google-translate google-this git-gutter geiser flycheck-rust expand-region elfeed deft chicken-scheme cargo avy ag)))
+    (string-inflection edn deadgrep devdocs company-lsp lsp-ui helm-lsp lsp-clangd lsp-java lsp-mode exec-path-from-shell xref-js2 indium cider helm-cider projectile-ripgrep ripgrep slack zenburn-theme yatemplate yaml-mode xcscope wgrep web-mode use-package twittering-mode switch-window smartparens slime-company restclient rainbow-delimiters racket-mode racer puppet-mode paredit nsis-mode nodejs-repl neotree magit json-mode js2-refactor jenkins jasminejs-mode helm-swoop helm-projectile helm-flycheck helm-dash helm-company helm-ag haskell-mode google-translate google-this git-gutter geiser flycheck-rust expand-region elfeed deft chicken-scheme cargo avy ag)))
  '(recenter-positions (quote (middle))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
