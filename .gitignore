@@ -28,3 +28,4 @@ templates/
 transient/
 workspace/
 .dap-breakpoints
+tramp
