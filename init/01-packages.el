@@ -93,6 +93,8 @@
   :ensure t
   :bind (("C-c d p" . devdocs-search)))
 
+(use-package edn :ensure t)
+
 (use-package elfeed
   :ensure t
   :bind ("C-x w" . elfeed)
@@ -289,7 +291,6 @@
 
 (use-package company-lsp :ensure t :after company lsp)
 (use-package dap-java :after lsp-java)
-(use-package lsp-java-treemacs :after treemacs)
 
 (use-package less-css-mode
   :ensure t
@@ -332,6 +333,10 @@
          ("C-c C-<" . mc/mark-all-like-this)
          ("C-c C->" . mc/mark-more-like-this-extended)))
 
+(use-package neotree :ensure t
+  :bind (("<f12>" . neotree-toggle)
+         ("M-<f12>" . neotree-dir)))
+
 (use-package nodejs-repl
   :ensure t)
 
@@ -344,6 +349,8 @@
   (setq auto-mode-alist (append '(("\\.\\([Nn][Ss][Hh]\\)$" .
                                    nsis-mode)) auto-mode-alist))
   )
+
+(use-package nix-mode :ensure t)
 
 (use-package paredit
   :ensure t)
@@ -451,33 +458,15 @@
   (spaceline-helm-mode t)
   (spaceline-info-mode t))
 
-(use-package switch-window
-  :ensure t)
-
-(use-package treemacs
-  :ensure t
-  :defer t
+(use-package string-inflection :ensure t
   :bind
   (:map global-map
-        ("C-x t s"   . treemacs-select-window)
-        ("C-x t 1"   . treemacs-delete-other-windows)
-        ("C-x t t"   . treemacs)
-        ("<f12>"     . treemacs)
-        ("C-x t B"   . treemacs-bookmark)
-        ("C-x t C-t" . treemacs-find-file)
-        ("C-x t M-t" . treemacs-find-tag)))
+        ("C-c i" . string-inflection-all-cycle)
+        ("C-c U" . string-inflection-underscore)
+        ("C-c K" . string-inflection-kebab-case)
+        ("C-c C" . string-inflection-camelcase)))
 
-(use-package treemacs-projectile
-  :after treemacs projectile
-  :ensure t)
-
-(use-package treemacs-icons-dired
-  :after treemacs dired
-  :ensure t
-  :config (treemacs-icons-dired-mode))
-
-(use-package treemacs-magit
-  :after treemacs magit
+(use-package switch-window
   :ensure t)
 
 (use-package twittering-mode
