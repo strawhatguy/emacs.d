@@ -1,5 +1,7 @@
 (require 'package)
 
+;;;; bug: https://debbugs.gnu.org/cgi/bugreport.cgi?bug=34341
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
