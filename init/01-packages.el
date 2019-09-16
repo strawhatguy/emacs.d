@@ -43,6 +43,7 @@
 (use-package cider
   :ensure t
   :config
+  (setq cider-repl-display-help-banner nil)
   (add-hook 'cider-repl-mode-hook #'cider-company-enable-fuzzy-completion)
   (add-hook 'cider-mode-hook #'cider-company-enable-fuzzy-completion))
 
@@ -121,6 +122,8 @@
   :ensure t
   :bind (("s-=" . er/expand-region)
          ("s--" . er/contract-region)))
+
+(use-package fd-dired :ensure t)
 
 (use-package flycheck
   :ensure t
