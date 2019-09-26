@@ -1,7 +1,7 @@
 ;;;; custom settings
 
 ;;;; Seed the random-number generator
-(random t) 
+(random t)
 
 ;;;; Get right to it
 (setq inhibit-startup-screen  t)
@@ -26,9 +26,6 @@
 
 ;;;; buffer handling
 (add-hook 'Buffer-menu-mode-hook 'mc/Buffer-mode-sort-key-hook)
-
-;;;; lose the unnecessary whitespace
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;;;; Don't spawn a new frame for the ediff commands, keep it all in one frame
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
