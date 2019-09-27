@@ -469,7 +469,8 @@
         ("C-c i" . string-inflection-all-cycle)
         ("C-c U" . string-inflection-underscore)
         ("C-c K" . string-inflection-kebab-case)
-        ("C-c C" . string-inflection-camelcase)))
+        ("C-c C" . string-inflection-lower-camelcase)
+        ("C-c P" . string-inflection-camelcase)))
 
 (use-package switch-window
   :ensure t)
