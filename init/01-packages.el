@@ -1,7 +1,5 @@
 (require 'package)
 
-;;;; bug: https://debbugs.gnu.org/cgi/bugreport.cgi?bug=34341
-(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
@@ -42,6 +40,11 @@
 
 (use-package cider
   :ensure t
+  :bind
+  ; fix cider overridding the key
+  (:map cider-mode-map
+        ("C-c SPC" . avy-goto-word-1)
+        ("C-c C-r" . deadgrep))
   :config
   (setq cider-repl-display-help-banner nil)
   (add-hook 'cider-repl-mode-hook #'cider-company-enable-fuzzy-completion)
@@ -96,6 +99,12 @@
   :ensure t
   :bind (("C-c d p" . devdocs-search)))
 
+(use-package dumb-jump
+  :bind (("C-M->" . dumb-jump-go)
+         ("C-M-<" . dumb-jump-back))
+  :config (setq dumb-jump-selector 'helm)
+  :ensure t)
+
 (use-package edn :ensure t)
 
 (use-package elfeed
@@ -130,7 +139,6 @@
   :bind (:map flycheck-mode-map
               ("C-c ! h" . helm-flycheck))
   :config
-  (add-hook 'after-init-hook #'global-flycheck-mode)
   (setq-default flycheck-disabled-checkers '(javascript-jshint json-jsonlist rust-cargo))
   (flycheck-add-mode 'javascript-eslint 'js-mode)
   (flycheck-add-mode 'javascript-eslint 'js2-mode)
@@ -220,6 +228,13 @@
 (use-package helm-swoop
   :ensure t
   :bind (("M-i" . helm-swoop)))
+
+(use-package helm-c-yasnippet
+  :ensure t
+  ;:diminish helm-c-yasnippet-mode
+  :config
+  (setq helm-yas-space-match-any-greedy t)
+  :bind ("C-\"" . 'helm-yas-complete))
 
 (use-package indium
   :config
