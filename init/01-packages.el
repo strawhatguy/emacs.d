@@ -23,9 +23,7 @@
 
 (use-package avy
   :ensure t
-  :bind (("C-c SPC" . avy-goto-word-1)
-         ("M-C-g" . avy-goto-line)
-         ("C-c ." . avy-goto-char-2))
+  :bind (("C-." . avy-goto-word-1))
   :config
   (setq avy-background t))
 
@@ -43,7 +41,6 @@
   :bind
   ; fix cider overridding the key
   (:map cider-mode-map
-        ("C-c SPC" . avy-goto-word-1)
         ("C-c C-r" . deadgrep))
   :config
   (setq cider-repl-display-help-banner nil)
