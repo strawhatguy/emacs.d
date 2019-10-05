@@ -9,6 +9,9 @@
 ;;;; no tabs!
 (set-default 'indent-tabs-mode nil)
 
+;;;; 2 character indent everywhere
+(setq standard-indent 2)
+
 ;;;; Stop making backup files
 (setq make-backup-files nil)
 
@@ -54,3 +57,12 @@
 
 ;;;; save the file automatically
 (auto-save-visited-mode 1)
+
+;;;; this advice function makes delete-trailing-whitespace less jarring
+(defun mc/not-at-end-of-line (func &rest args)
+  (unless (or (eolp) (eobp))
+    (apply func args)))
+
+(setq delete-trailing-lines t)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+(advice-add 'delete-trailing-whitespace :around #'mc/not-at-end-of-line)

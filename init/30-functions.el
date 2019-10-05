@@ -3,6 +3,11 @@
 (require 'cl)
 (require 'dash)
 
+(defun mc/advice-unadvice (sym)
+  "Remove all advices from symbol SYM."
+  (interactive "aFunction symbol: ")
+  (advice-mapc (lambda (advice _props) (advice-remove sym advice)) sym))
+
 ;;;; vert <-> horiz split switch
 (defun mc/toggle-window-split ()
   (interactive)

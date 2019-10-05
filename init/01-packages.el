@@ -116,7 +116,7 @@
 
   (defun mc/reload-elfeed-configuration ()
     (interactive)
-    (setq elfeed-feeds 
+    (setq elfeed-feeds
           (mc/elfeed-read-lines (concat user-emacs-directory "elfeed-feeds"))))
 
   (mc/reload-elfeed-configuration))
@@ -136,11 +136,11 @@
   :bind (:map flycheck-mode-map
               ("C-c ! h" . helm-flycheck))
   :config
+  (global-flycheck-mode)
   (setq-default flycheck-disabled-checkers '(javascript-jshint json-jsonlist rust-cargo))
   (flycheck-add-mode 'javascript-eslint 'js-mode)
   (flycheck-add-mode 'javascript-eslint 'js2-mode)
-  (flycheck-add-mode 'javascript-eslint 'web-mode)
-  )
+  (flycheck-add-mode 'javascript-eslint 'web-mode))
 
 (use-package flycheck-rust :ensure t)
 
@@ -321,7 +321,6 @@
          ("q" . magit-quit-session))
 
   :config
-
   (defadvice magit-status (around magit-fullscreen activate)
     (window-configuration-to-register :magit-fullscreen)
     ad-do-it
@@ -364,13 +363,31 @@
                                    nsis-mode)) auto-mode-alist))
 
   (setq auto-mode-alist (append '(("\\.\\([Nn][Ss][Hh]\\)$" .
-                                   nsis-mode)) auto-mode-alist))
-  )
+                                   nsis-mode)) auto-mode-alist)))
 
 (use-package nix-mode :ensure t)
 
 (use-package paredit
   :ensure t)
+
+(use-package parinfer
+  :ensure t
+  :bind
+  (("C-," . parinfer-toggle-mode))
+  :init
+  (progn
+    (setq parinfer-extensions
+          '(defaults       ; should be included.
+             pretty-parens  ; different paren styles for different modes.
+             ;lispy          ; If you use Lispy. With this extension, you should install Lispy and do not enable lispy-mode directly.
+             paredit        ; Introduce some paredit commands.
+             smart-tab      ; C-b & C-f jump positions and smart shift with tab & S-tab.
+             smart-yank))   ; Yank behavior depend on mode.
+    (add-hook 'clojure-mode-hook #'parinfer-mode)
+    (add-hook 'emacs-lisp-mode-hook #'parinfer-mode)
+    (add-hook 'common-lisp-mode-hook #'parinfer-mode)
+    (add-hook 'scheme-mode-hook #'parinfer-mode)
+    (add-hook 'lisp-mode-hook #'parinfer-mode)))
 
 (use-package popup
   :ensure t
@@ -451,22 +468,8 @@
                  slime-repl
                  slime-sbcl-exts
                  slime-scratch
-                 slime-xref-browser
-                 ))
+                 slime-xref-browser))
   (slime-autodoc-mode))
-
-(use-package smartparens
-  :ensure t
-  :config
-  (require 'smartparens-config)
-  (smartparens-global-mode t)
-  (sp-use-paredit-bindings)
-  :bind
-  (:map smartparens-mode-map
-        ("C-c f" . sp-forward-slurp-sexp)
-        ("C-c b" . sp-backward-slurp-sexp)
-        ("C-c C-f" . sp-forward-barf-sexp)
-        ("C-c C-b" . sp-backward-barf-sexp)))
 
 (use-package spaceline
   :ensure t
