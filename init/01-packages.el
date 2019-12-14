@@ -96,6 +96,11 @@
   :ensure t
   :bind (("C-c d p" . devdocs-search)))
 
+(use-package direnv :ensure t
+  :config (direnv-mode))
+
+(use-package dockerfile-mode :ensure t)
+
 (use-package dumb-jump
   :bind (("C-M->" . dumb-jump-go)
          ("C-M-<" . dumb-jump-back))
@@ -292,7 +297,8 @@
 (use-package lsp-mode :commands lsp :ensure t
   :config
   (setq lsp-prefer-flymake nil)
-  (add-hook 'js2-mode-hook 'lsp))
+  (add-hook 'js2-mode-hook 'lsp)
+  (add-hook 'typescript-mode-hook 'lsp))
 
 (use-package lsp-ui :ensure t :after lsp
   :config
@@ -487,8 +493,9 @@
         ("C-c C" . string-inflection-lower-camelcase)
         ("C-c P" . string-inflection-camelcase)))
 
-(use-package switch-window
-  :ensure t)
+(use-package switch-window :ensure t)
+
+(use-package typescript-mode :ensure t)
 
 (use-package twittering-mode
   :ensure t
