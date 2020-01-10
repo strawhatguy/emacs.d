@@ -79,7 +79,10 @@
 
 (use-package deadgrep
   :ensure t
-  :bind (("C-c C-r" . deadgrep)))
+  :bind (("C-c C-r" . deadgrep)
+         :map deadgrep-mode-map
+         ("RET" . #'deadgrep-visit-result-other-window)
+         ("M-RET" . #'deadgrep-visit-result)))
 
 (use-package deft
   :ensure t
@@ -256,6 +259,8 @@
 
 (use-package jenkins
   :ensure t)
+
+(use-package jest :ensure t)
 
 (use-package js2-mode
   :ensure t
