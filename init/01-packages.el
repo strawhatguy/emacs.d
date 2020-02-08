@@ -2,7 +2,7 @@
 
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/") t)
+             '("melpa" . "https://melpa.org/packages/") t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Switch to use-package
@@ -66,7 +66,6 @@
                 (setq company-tooltip-minimum-width 30)))))
 
 (defun find-rust-src-racer-hook ()
-  (eldoc-mode)
   (let* ((cmd (concatenate 'string  (executable-find "rustc") " --print sysroot"))
          (res (s-trim (shell-command-to-string cmd)))
          (src (concatenate 'string res "/lib/rustlib/src/rust/src")))
