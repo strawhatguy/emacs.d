@@ -217,11 +217,10 @@
 
   (helm-mode 1))
 
-(use-package helm-ag :ensure t)
+
 (use-package helm-flycheck :ensure t)
 (use-package helm-cider :ensure t)
 (use-package helm-company :ensure t)
-(use-package helm-dash :ensure t)
 (use-package helm-lsp :ensure t)
 
 (use-package helm-projectile
