@@ -201,7 +201,6 @@
     (setq helm-google-suggest-use-curl-p t))
 
   (setq helm-quick-update                     t
-        helm-split-window-in-side-p           t
         helm-buffers-fuzzy-matching           t
         helm-recentf-fuzzy-match              t
         helm-locate-fuzzy-match               t
