@@ -12,6 +12,3 @@
 
 ;;;; show the end
 (set-default 'indicate-empty-lines t)
-
-;;;; correct for cider's error buffer
-(setq cider-stacktrace-frames-background-color (cider-scale-background-color))

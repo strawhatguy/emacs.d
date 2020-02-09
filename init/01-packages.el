@@ -44,6 +44,8 @@
         ("C-c C-r" . deadgrep))
   :config
   (setq cider-repl-display-help-banner nil)
+  ;;;; correct for cider's error buffer
+  (setq cider-stacktrace-frames-background-color (cider-scale-background-color))
   (add-hook 'cider-repl-mode-hook #'cider-company-enable-fuzzy-completion)
   (add-hook 'cider-mode-hook #'cider-company-enable-fuzzy-completion))
 
@@ -65,7 +67,11 @@
                 (setq company-tooltip-margin 1)
                 (setq company-tooltip-minimum-width 30)))))
 
+(use-package counsel :ensure t)
+(use-package counsel-projectile :ensure t)
+
 (defun find-rust-src-racer-hook ()
+  "Find the rustc system path."
   (let* ((cmd (concatenate 'string  (executable-find "rustc") " --print sysroot"))
          (res (s-trim (shell-command-to-string cmd)))
          (src (concatenate 'string res "/lib/rustlib/src/rust/src")))
@@ -106,7 +112,7 @@
 (use-package dumb-jump
   :bind (("C-M->" . dumb-jump-go)
          ("C-M-<" . dumb-jump-back))
-  :config (setq dumb-jump-selector 'helm)
+  :config (setq dumb-jump-selector 'ivy)
   :ensure t)
 
 (use-package edn :ensure t)
@@ -140,8 +146,6 @@
 
 (use-package flycheck
   :ensure t
-  :bind (:map flycheck-mode-map
-              ("C-c ! h" . helm-flycheck))
   :config
   (global-flycheck-mode)
   (setq-default flycheck-disabled-checkers '(javascript-jshint json-jsonlist rust-cargo))
@@ -187,60 +191,32 @@
         (concat (getenv "HOME")
                 "/Library/Haskell/bin/stack")))
 
-
-(use-package helm
-  :ensure t
-  :bind (("M-x" . helm-M-x)
-         ("C-c h" . helm-command-prefix)
-         ("C-x C-f" . helm-find-files)
-         :map helm-map
-         ("<tab>" . helm-execute-persistent-action)
-         ("C-z"   . helm-select-action))
-  :config
-  (when (executable-find "curl")
-    (setq helm-google-suggest-use-curl-p t))
-
-  (setq helm-quick-update                     t
-        helm-buffers-fuzzy-matching           t
-        helm-recentf-fuzzy-match              t
-        helm-locate-fuzzy-match               t
-        helm-M-x-fuzzy-match                  t
-        helm-semantic-fuzzy-match             t
-        helm-apropos-fuzzy-match              t
-        helm-imenu-fuzzy-match                t
-        helm-lisp-fuzzy-completion            t
-        helm-move-to-line-cycle-in-source     t
-        helm-scroll-amount                    8
-        helm-ff-search-library-in-sexp        t
-        helm-ff-file-name-history-use-recentf t)
-
-  (helm-mode 1))
-
-
-(use-package helm-flycheck :ensure t)
-(use-package helm-cider :ensure t)
-(use-package helm-company :ensure t)
-(use-package helm-lsp :ensure t)
-
-(use-package helm-projectile
-  :ensure t
-  :config
-  (setq helm-projectile-fuzzy-match t))
-
-(use-package helm-swoop
-  :ensure t
-  :bind (("M-i" . helm-swoop)))
-
-(use-package helm-c-yasnippet
-  :ensure t
-  ;:diminish helm-c-yasnippet-mode
-  :config
-  (setq helm-yas-space-match-any-greedy t)
-  :bind ("C-\"" . 'helm-yas-complete))
-
 (use-package indium
   :config
   (add-hook 'js2-mode-hook #'indium-interaction-mode))
+
+(use-package ivy
+  :ensure t
+  :bind
+  (("C-s" . 'swiper-isearch)
+   ("M-i" . 'swiper)
+   ("M-x" . 'counsel-M-x)
+   ("C-x C-f" . 'counsel-find-file)
+   ("M-y" . 'counsel-yank-pop)
+   ("C-h f" . 'counsel-describe-function)
+   ("C-h v" . 'counsel-describe-variable)
+   ("C-h l" . 'counsel-find-library)
+   ("C-h S" . 'counsel-info-lookup-symbol)
+   ("C-h u" . 'counsel-unicode-char)
+   ("C-h V" . 'counsel-set-variable)
+   ("C-x b" . 'ivy-switch-buffer))
+
+  :config
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers t)
+  (setq ivy-height 10)
+  (setq ivy-count-format "")
+  (setq ivy-initial-inputs-alist nil))
 
 (use-package jasminejs-mode
   :ensure t
@@ -409,13 +385,9 @@
   :ensure t
   :config
   (projectile-mode 1)
-  (setq projectile-completion-system 'helm)
+  (setq projectile-completion-system 'ivy)
   (setq projectile-generic-command "fd . -0")
-  (setq projectile-switch-project-action
-        (lambda ()
-          (if current-prefix-arg
-              (magit-status)
-            (helm-projectile-find-file))))
+  (setq projectile-switch-project-action 'counsel-projectile-find-file)
   :bind (:map projectile-mode-map
               ("C-c p" . projectile-command-map)))
 
@@ -483,7 +455,6 @@
   :ensure t
   :config
   (spaceline-spacemacs-theme)
-  (spaceline-helm-mode t)
   (spaceline-info-mode t))
 
 (use-package string-inflection :ensure t
