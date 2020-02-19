@@ -69,6 +69,7 @@
 
 (use-package counsel :ensure t)
 (use-package counsel-projectile :ensure t)
+(use-package counsel-osx-app :ensure t)
 
 (defun find-rust-src-racer-hook ()
   "Find the rustc system path."
