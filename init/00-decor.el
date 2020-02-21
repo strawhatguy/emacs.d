@@ -12,3 +12,6 @@
 
 (setq split-height-threshold 80)
 (setq split-width-threshold  240)
+
+(diminish 'eldoc-mode)
+(diminish 'auto-revert-mode)

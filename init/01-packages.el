@@ -51,6 +51,7 @@
 
 (use-package company
   :ensure t
+  :diminish company-mode
   :bind (:map company-active-map
               ("<tab>" . company-complete-selection)
               ("C-p" . company-select-previous)
@@ -79,6 +80,7 @@
     (setq racer-rust-src-path src)))
 
 (use-package racer :ensure t
+  :diminish racer-mode
   :config
   (add-hook 'rust-mode-hook #'racer-mode)
   (add-hook 'racer-mode-hook #'find-rust-src-racer-hook))
@@ -165,6 +167,7 @@
 
 (use-package git-gutter
   :ensure t
+  :diminish git-gutter-mode
   :config
   (global-git-gutter-mode 1))
 
@@ -198,9 +201,10 @@
 
 (use-package ivy
   :ensure t
+  :diminish ivy-mode
   :bind
   (("C-s" . 'swiper-isearch)
-   ("M-i" . 'swiper)
+   ("M-i" . 'swiper-thing-at-point)
    ("M-x" . 'counsel-M-x)
    ("C-x C-f" . 'counsel-find-file)
    ("M-y" . 'counsel-yank-pop)
@@ -256,6 +260,7 @@
 
 (use-package js2-refactor
   :ensure t
+  :diminish js2-refactor-mode
   :config
   (add-hook 'js2-mode-hook 'js2-refactor-mode)
   (js2r-add-keybindings-with-prefix "C-c C-m"))
@@ -290,6 +295,8 @@
   :config
   (dap-mode t)
   (dap-ui-mode t))
+
+(use-package diminish :ensure t)
 
 (use-package company-lsp :ensure t :after company lsp)
 (use-package dap-java :after lsp-java)
@@ -407,6 +414,8 @@
 (use-package ripgrep
   :ensure t)
 
+(use-package rjsx-mode :ensure t)
+
 (use-package ruby-mode
   :ensure t
   :mode (("\\.rb$" . ruby-mode)
@@ -500,14 +509,12 @@
 
 (use-package yasnippet
   :ensure t
-  :demand t
+  :diminish yas-minor-mode
   :bind
   (:map yas-minor-mode-map
         ("<tab>" . nil)
-        ("TAB" . nil)
-        ("C-c y e" . yas-expand))
+        ("TAB" . nil))
   :config
-  (yas-global-mode)
   (define-key yas-keymap (kbd "<return>") 'yas-next-field)
   (add-to-list 'yas/root-directory "~/.emacs.d/snippets")
   (yas-reload-all))
