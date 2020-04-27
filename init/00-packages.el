@@ -172,6 +172,8 @@
   (global-git-gutter-mode 1))
 
 (use-package go-mode :ensure t)
+(use-package go-dlv :ensure t)
+(use-package go-playground :ensure t)
 
 (use-package google-this
   :ensure t)
@@ -197,10 +199,6 @@
         (concat (getenv "HOME")
                 "/Library/Haskell/bin/stack")))
 
-(use-package indium
-  :config
-  (add-hook 'js2-mode-hook #'indium-interaction-mode))
-
 (use-package ivy
   :ensure t
   :diminish ivy-mode
@@ -225,18 +223,6 @@
   (setq ivy-count-format "")
   (setq ivy-initial-inputs-alist nil))
 
-(use-package jasminejs-mode
-  :ensure t
-  :config
-  (add-hook 'jasminejs-mode-hook
-            'jasminejs-add-snippets-to-yas-snippet-dirs)
-
-  (add-hook 'jasminejs-mode-hook
-            (lambda ()
-              (local-set-key (kbd "C-c j") 'jasminejs-prefix-map)))
-
-  (add-hook 'js2-mode-hook 'jasminejs-mode))
-
 (use-package jenkins
   :ensure t)
 
@@ -244,18 +230,11 @@
 
 (use-package js2-mode
   :ensure t
-  :mode ("\\.js$" . js2-mode)
   :bind (:map js2-mode-map
               ("M-." . nil))
   :config
   (add-hook 'js2-mode-hook
             (lambda () (subword-mode)))
-
-  ;; Setup company mode for js2-mode
-  (add-hook 'js2-mode-hook
-            (lambda ()
-              (set (make-local-variable 'company-backends)
-                   '((company-dabbrev-code company-yasnippet)))))
 
   (eval-after-load 'js2-mode
     (progn (flycheck-mode))))
@@ -416,7 +395,8 @@
 (use-package ripgrep
   :ensure t)
 
-(use-package rjsx-mode :ensure t)
+(use-package rjsx-mode :ensure t
+  :mode ("\\.js$" . rjsx-mode))
 
 (use-package ruby-mode
   :ensure t
@@ -509,23 +489,8 @@
 (use-package yaml-mode
   :ensure t)
 
-(use-package yasnippet
-  :ensure t
-  :diminish yas-minor-mode
-  :bind
-  (:map yas-minor-mode-map
-        ("<tab>" . nil)
-        ("TAB" . nil))
-  :config
-  (define-key yas-keymap (kbd "<return>") 'yas-next-field)
-  (add-to-list 'yas/root-directory "~/.emacs.d/snippets")
-  (yas-reload-all))
-
-(use-package yatemplate
-  :ensure t
-  :demand t
-  :init (auto-insert-mode)
-  :config (yatemplate-fill-alist))
+(use-package vue-mode :ensure t)
+(use-package vue-html-mode :ensure t)
 
 (use-package zenburn-theme
   :ensure t)

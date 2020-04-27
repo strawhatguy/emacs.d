@@ -48,7 +48,7 @@
 (defun mc/compile-asking-directory (top-level)
   (interactive "DProject toplevel directory: ")
   (let ((default-directory top-level))
-    (call-interactively 'counsel-compile)))
+    (counsel-compile top-level)))
 
 ;;;; Compile from project root
 (defun mc/compile-from-project-root ()
