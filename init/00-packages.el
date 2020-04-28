@@ -493,4 +493,6 @@
 (use-package vue-html-mode :ensure t)
 
 (use-package zenburn-theme
-  :ensure t)
+  :ensure t
+  :config
+  (load-theme 'zenburn))

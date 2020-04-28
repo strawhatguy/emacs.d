@@ -4,6 +4,9 @@
 (if (not (boundp 'user-emacs-directory))
     (setq user-emacs-directory "~/.emacs.d/"))
 
+(setq custom-file (concat user-emacs-directory "custom.el"))
+(load custom-file)
+
 (defun mc/reload-all-user-initialization-files ()
   (interactive)
   (mapcar (lambda (f)
@@ -22,6 +25,3 @@
 (message "My emacs directory is: %s" user-emacs-directory)
 
 (setq debug-on-error nil)
-
-(setq custom-file (concat user-emacs-directory "custom.el"))
-(load custom-file)

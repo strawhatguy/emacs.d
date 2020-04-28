@@ -4,6 +4,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(auto-save-visited-interval 1)
+ '(custom-safe-themes
+   '("7aaee3a00f6eb16836f5b28bdccde9e1079654060d26ce4b8f49b56689c51904" default))
  '(geiser-active-implementations '(guile chicken chez mit chibi) t)
  '(haskell-process-args-cabal-repl '("--ghc-option=-ferror-spans"))
  '(haskell-process-auto-import-loaded-modules t)
