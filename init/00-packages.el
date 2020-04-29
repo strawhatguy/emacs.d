@@ -271,7 +271,7 @@
 (use-package lsp-ui :ensure t :after lsp :commands lsp-ui-mode)
 
 (use-package lsp-java :ensure t :after lsp
-  :config (add-hook 'java-mode-hook 'lsp))
+  :hook (java-mode . lsp))
 
 (use-package dap-mode
   :ensure t :after lsp-mode
@@ -281,7 +281,7 @@
 
 (use-package diminish :ensure t)
 
-(use-package company-lsp :ensure t :after company lsp)
+(use-package company-lsp :ensure t :commands company-lsp :after company lsp)
 (use-package dap-java :after lsp-java)
 
 (use-package less-css-mode
