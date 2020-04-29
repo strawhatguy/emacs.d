@@ -259,15 +259,17 @@
             (lambda ()
               (setq js-indent-level 2))))
 
-(use-package lsp-mode :commands lsp :ensure t
+(use-package lsp-mode
+  :ensure t
+  :commands (lsp lsp-deferred)
+  :hook (go-mode . lsp-deferred)
   :config
   (setq lsp-prefer-flymake nil)
   (add-hook 'js2-mode-hook 'lsp)
   (add-hook 'typescript-mode-hook 'lsp))
 
-(use-package lsp-ui :ensure t :after lsp
-  :config
-  (add-hook 'lsp-after-open-hook (lambda () (lsp-ui-flycheck-enable 1))))
+(use-package lsp-ui :ensure t :after lsp :commands lsp-ui-mode)
+
 (use-package lsp-java :ensure t :after lsp
   :config (add-hook 'java-mode-hook 'lsp))
 
@@ -495,4 +497,4 @@
 (use-package zenburn-theme
   :ensure t
   :config
-  (load-theme 'zenburn))
+  (load-theme 'zenburn t))
