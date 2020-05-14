@@ -259,15 +259,25 @@
             (lambda ()
               (setq js-indent-level 2))))
 
-(use-package lsp-mode :commands lsp :ensure t
+(use-package lsp-mode
+  :commands (lsp lsp-deferred)
+  :ensure t
+  :hook (go-mode . lsp-deferred)
   :config
   (setq lsp-prefer-flymake nil)
   (add-hook 'js2-mode-hook 'lsp)
   (add-hook 'typescript-mode-hook 'lsp))
 
-(use-package lsp-ui :ensure t :after lsp
-  :config
-  (add-hook 'lsp-after-open-hook (lambda () (lsp-ui-flycheck-enable 1))))
+(defun mc/lsp-go-install-save-hooks ()
+  (add-hook 'before-save-hook #'lsp-format-buffer t t)
+  (add-hook 'before-save-hook #'lsp-organize-imports t t))
+; (add-hook 'go-mode-hook #'mc/lsp-go-install-save-hooks)
+
+(use-package lsp-ui
+  :ensure t
+  :after lsp
+  :commands lsp-ui-mode)
+
 (use-package lsp-java :ensure t :after lsp
   :config (add-hook 'java-mode-hook 'lsp))
 
@@ -390,7 +400,8 @@
   :ensure t)
 
 (use-package restclient
-  :ensure t)
+  :ensure t
+  :mode ("\\.restclient$" . restclient-mode))
 
 (use-package ripgrep
   :ensure t)
@@ -489,10 +500,18 @@
 (use-package yaml-mode
   :ensure t)
 
+(use-package yasnippet
+  :ensure t
+  :hook ((go-mode . yas-minor-mode)
+         (rjsx-mode . yas-minor-mode)
+         (lisp-mode . yas-minor-mode)
+         (clojure-mode . yas-minor-mode))
+  :config (yas-reload-all))
+
 (use-package vue-mode :ensure t)
 (use-package vue-html-mode :ensure t)
 
 (use-package zenburn-theme
   :ensure t
   :config
-  (load-theme 'zenburn))
+  (load-theme 'zenburn t))

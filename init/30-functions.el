@@ -71,14 +71,6 @@
     (switch-to-buffer output-buffer)
     (setq default-directory dir)))
 
-(defadvice shell-command (before buffer-named-with-command
-                                 (command &optional output-buffer error-buffer)
-                                 activate compile)
-  (setq output-buffer (or output-buffer (concat "*Shell: " command "*")))
-  (let ((dir default-directory))
-    (switch-to-buffer output-buffer)
-    (setq default-directory dir)))
-
 ;;;; Buffer menu mode sort function
 (defun mc/buffer-list-sort (column)
   (interactive "SColumn to sort by (one of name,size,mode,file,time [default=time]): ")
