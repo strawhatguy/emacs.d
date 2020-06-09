@@ -489,6 +489,8 @@
 (use-package xcscope
   :ensure t)
 
+(use-package xkcd :ensure t)
+
 (use-package yaml-mode
   :ensure t)
 
