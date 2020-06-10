@@ -35,3 +35,4 @@ network-security.data
 semanticdb/
 tramp
 /init/00-local-preinit.el
+/xkcd/
