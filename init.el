@@ -1,6 +1,9 @@
 ;; Allow this to function outside of an emacs.d directory
 (setq debug-on-error t)
 
+(setq gc-cons-threshold 100000000)
+(setq read-process-output-max (* 1024 1024))
+
 (if (not (boundp 'user-emacs-directory))
     (setq user-emacs-directory "~/.emacs.d/"))
 
