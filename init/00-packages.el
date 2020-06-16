@@ -230,21 +230,9 @@
 
 (use-package js2-mode
   :ensure t
+  :hook (js2-mode . subword-mode)
   :bind (:map js2-mode-map
-              ("M-." . nil))
-  :config
-  (add-hook 'js2-mode-hook
-            (lambda () (subword-mode)))
-
-  (eval-after-load 'js2-mode
-    (progn (flycheck-mode))))
-
-(use-package js2-refactor
-  :ensure t
-  :diminish js2-refactor-mode
-  :config
-  (add-hook 'js2-mode-hook 'js2-refactor-mode)
-  (js2r-add-keybindings-with-prefix "C-c C-m"))
+              ("M-." . nil)))
 
 (use-package xref-js2
   :ensure t
@@ -496,11 +484,7 @@
 
 (use-package yasnippet
   :ensure t
-  :hook ((go-mode . yas-minor-mode)
-         (rjsx-mode . yas-minor-mode)
-         (lisp-mode . yas-minor-mode)
-         (clojure-mode . yas-minor-mode))
-  :config (yas-reload-all))
+  :config (yas-global-mode 1))
 
 (use-package vue-mode :ensure t)
 (use-package vue-html-mode :ensure t)
