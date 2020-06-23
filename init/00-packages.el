@@ -247,6 +247,8 @@
             (lambda ()
               (setq js-indent-level 2))))
 
+(use-package lastpass :ensure t)
+
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
   :ensure t
