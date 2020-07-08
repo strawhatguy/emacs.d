@@ -406,35 +406,9 @@
 (use-package s
   :ensure t)
 
-(use-package slime-company
-  :ensure t)
-
-(use-package slime
-  :ensure t
-  :config
-  (setq slime-lisp-implementations
-        '((sbcl ("/usr/local/bin/sbcl"))
-          (abcl ("/usr/local/bin/abcl"))
-          (ecl ("/usr/local/bin/ecl"))
-          (clisp ("/usr/local/bin/clisp"))))
-  (slime-setup '(
-                 slime-asdf
-                 slime-autodoc
-                 slime-company
-                 slime-editing-commands
-                 slime-fancy
-                 slime-fancy-inspector
-                 slime-fontifying-fu
-                 slime-fuzzy
-                 slime-indentation
-                 slime-mdot-fu
-                 slime-package-fu
-                 slime-references
-                 slime-repl
-                 slime-sbcl-exts
-                 slime-scratch
-                 slime-xref-browser))
-  (slime-autodoc-mode))
+(use-package sly :ensure t)
+(use-package sly-asdf :ensure t)
+(use-package sly-quicklisp :ensure t)
 
 (use-package spaceline
   :ensure t
