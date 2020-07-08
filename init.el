@@ -26,5 +26,6 @@
                 (mc/reload-all-user-initialization-files))))
 
 (message "My emacs directory is: %s" user-emacs-directory)
+(cd "~")
 
 (setq debug-on-error nil)
