@@ -38,10 +38,6 @@
 
 (use-package cider
   :ensure t
-  :bind
-  ; fix cider overridding the key
-  (:map cider-mode-map
-        ("C-c C-r" . deadgrep))
   :config
   (setq cider-repl-display-help-banner nil)
   ;;;; correct for cider's error buffer
@@ -87,7 +83,7 @@
 
 (use-package deadgrep
   :ensure t
-  :bind (("C-c C-r" . deadgrep)
+  :bind (("C-c d g" . deadgrep)
          :map deadgrep-mode-map
          ("RET" . #'deadgrep-visit-result-other-window)
          ("M-RET" . #'deadgrep-visit-result)))
