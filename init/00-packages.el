@@ -251,6 +251,7 @@
   :hook (go-mode . lsp-deferred)
   :config
   (setq lsp-prefer-flymake nil)
+  (setq lsp-file-watch-threshold nil)
   (add-hook 'js2-mode-hook 'lsp)
   (add-hook 'typescript-mode-hook 'lsp))
 
@@ -402,7 +403,15 @@
 (use-package s
   :ensure t)
 
-(use-package sly :ensure t)
+(use-package sly :ensure t
+  :config
+  ;; mac brew location
+  (setq common-lisp-hyperspec-root
+        "/usr/local/share/doc/hyperspec/HyperSpec/")
+  (setq common-lisp-hyperspec-symbol-table
+        (concat common-lisp-hyperspec-root "Data/Map_Sym.txt"))
+  (setq common-lisp-hyperspec-issuex-table
+        (concat common-lisp-hyperspec-root "Data/Map_IssX.txt")))
 (use-package sly-asdf :ensure t)
 (use-package sly-quicklisp :ensure t)
 
