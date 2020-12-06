@@ -251,7 +251,7 @@
   :hook (go-mode . lsp-deferred)
   :config
   (setq lsp-prefer-flymake nil)
-  (setq lsp-file-watch-threshold nil)
+  (setq-default lsp-file-watch-threshold nil)
   (add-hook 'js2-mode-hook 'lsp)
   (add-hook 'typescript-mode-hook 'lsp))
 

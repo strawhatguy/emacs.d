@@ -18,6 +18,7 @@
  '(js2-mode-indent-ignore-first-tab nil)
  '(lsp-go-codelens nil)
  '(lsp-gopls-codelens nil)
+ '(mc/always-run-for-all t)
  '(neo-window-width 50)
  '(package-selected-packages
    '(vterm lastpass xkcd go-playground go-dlv vue-html-mode vue-mode go-mode rjsx-mode diminish counsel-osx-app counsel-projectile counsel jest direnv dockerfile-mode typescript-mode parinfer spaceline dumb-jump fd-dired string-inflection edn deadgrep devdocs company-lsp lsp-ui lsp-clangd lsp-java lsp-mode exec-path-from-shell xref-js2 indium cider projectile-ripgrep ripgrep slack yatemplate yaml-mode xcscope wgrep twittering-mode switch-window rainbow-delimiters racer puppet-mode paredit nsis-mode nodejs-repl neotree magit json-mode jenkins jasminejs-mode haskell-mode google-translate google-this git-gutter geiser flycheck-rust expand-region elfeed deft chicken-scheme cargo avy ag))
