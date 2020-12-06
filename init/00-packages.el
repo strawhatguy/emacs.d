@@ -366,7 +366,8 @@
   (setq projectile-completion-system 'ivy)
   (setq projectile-generic-command "fd . -0")
   (setq projectile-switch-project-action 'counsel-projectile-find-file)
-  :bind (:map projectile-mode-map
+  :bind (("M-!" . projectile-run-async-shell-command-in-root)
+         :map projectile-mode-map
               ("C-c p" . projectile-command-map)))
 
 (use-package puppet-mode
@@ -438,6 +439,9 @@
   :ensure t
   :config
   (setq twittering-use-master-password t))
+
+(use-package vterm
+  :ensure t)
 
 (use-package web-mode
   :ensure t
