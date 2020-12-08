@@ -155,3 +155,7 @@
   (interactive)
   (remove-hook 'java-mode-hook 'mc/locally-tabs-mode)
   (remove-hook 'nxml-mode-hook 'mc/locally-tabs-mode))
+
+(defun mc/add-rfc3339-zulu-time-at-point ()
+  (interactive)
+  (insert (format-time-string "%Y-%m-%dT%H:%M:%S.%NZ" nil "Z")))
