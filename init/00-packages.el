@@ -228,7 +228,10 @@
   :ensure t
   :hook (js2-mode . subword-mode)
   :bind (:map js2-mode-map
-              ("M-." . nil)))
+              ("M-." . nil))
+  :config
+  (setq js2-mode-show-parse-errors nil
+        js2-mode-show-strict-warnings nil))
 
 (use-package xref-js2
   :ensure t
@@ -373,6 +376,13 @@
 (use-package puppet-mode
   :ensure t)
 
+(use-package lsp-python-ms
+  :ensure t
+  :init (setq lsp-python-ms-auto-install-server t)
+  :hook (python-mode . (lambda ()
+                         (require 'lsp-python-ms)
+                         (lsp))))  ; or lsp-deferred
+
 (use-package racket-mode
   :ensure t)
 
@@ -439,6 +449,11 @@
   :ensure t
   :config
   (setq twittering-use-master-password t))
+
+(use-package unicode-fonts
+  :ensure t
+  :config
+  (unicode-fonts-setup))
 
 (use-package vterm
   :ensure t)
