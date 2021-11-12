@@ -30,12 +30,6 @@
 (use-package cargo
   :ensure t)
 
-(use-package chicken-scheme
-  :ensure t
-  :config
-  (setq scheme-program-name "csi -:c")
-  (add-hook 'scheme-mode-hook 'setup-chicken-scheme))
-
 (use-package cider
   :ensure t
   :config
@@ -269,7 +263,6 @@
 
 (use-package diminish :ensure t)
 
-(use-package company-lsp :ensure t :commands company-lsp :after company lsp)
 (use-package dap-java :after lsp-java)
 
 (use-package less-css-mode
@@ -333,7 +326,7 @@
 (use-package paredit
   :ensure t)
 
-(use-package parinfer
+(use-package parinfer-rust-mode
   :ensure t
   :bind
   (("C-," . parinfer-toggle-mode))
@@ -346,11 +339,11 @@
              paredit        ; Introduce some paredit commands.
              smart-tab      ; C-b & C-f jump positions and smart shift with tab & S-tab.
              smart-yank))   ; Yank behavior depend on mode.
-    (add-hook 'clojure-mode-hook #'parinfer-mode)
-    (add-hook 'emacs-lisp-mode-hook #'parinfer-mode)
-    (add-hook 'common-lisp-mode-hook #'parinfer-mode)
-    (add-hook 'scheme-mode-hook #'parinfer-mode)
-    (add-hook 'lisp-mode-hook #'parinfer-mode)))
+    (add-hook 'clojure-mode-hook #'parinfer-rust-mode)
+    (add-hook 'emacs-lisp-mode-hook #'parinfer-rust-mode)
+    (add-hook 'common-lisp-mode-hook #'parinfer-rust-mode)
+    (add-hook 'scheme-mode-hook #'parinfer-rust-mode)
+    (add-hook 'lisp-mode-hook #'parinfer-rust-mode)))
 
 (use-package popup
   :ensure t
