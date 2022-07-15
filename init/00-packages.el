@@ -105,8 +105,10 @@
 (use-package dumb-jump
   :bind (("C-M->" . dumb-jump-go)
          ("C-M-<" . dumb-jump-back))
-  :config (setq dumb-jump-selector 'ivy)
-  :ensure t)
+  :ensure t
+  :config
+  (setq dumb-jump-selector 'ivy)
+  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
 
 (use-package edn :ensure t)
 
@@ -245,7 +247,8 @@
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
   :ensure t
-  :hook (go-mode . lsp-deferred)
+  :hook ((before-save . lsp-organize-imports)
+         (go-mode . lsp-deferred))
   :config
   (setq lsp-prefer-flymake nil)
   (setq-default lsp-file-watch-threshold nil))
@@ -259,7 +262,9 @@
   :ensure t :after lsp-mode
   :config
   (dap-mode t)
-  (dap-ui-mode t))
+  (dap-ui-mode t)
+  (require 'dap-go)
+  (dap-go-setup))
 
 (use-package diminish :ensure t)
 
@@ -362,7 +367,7 @@
   (setq projectile-switch-project-action 'counsel-projectile-find-file)
   :bind (("M-!" . projectile-run-async-shell-command-in-root)
          :map projectile-mode-map
-              ("C-c p" . projectile-command-map)))
+         ("C-c p" . projectile-command-map)))
 
 (use-package puppet-mode
   :ensure t)
@@ -440,6 +445,13 @@
   :ensure t
   :config
   (setq twittering-use-master-password t))
+
+(use-package undo-tree
+  :ensure t
+  :config
+  (global-undo-tree-mode)
+  (setq undo-tree-auto-save-history t)
+  (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo"))))
 
 (use-package unicode-fonts
   :ensure t

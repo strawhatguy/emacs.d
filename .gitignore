@@ -37,3 +37,4 @@ tramp
 /init/00-local-preinit.el
 /xkcd/
 /parinfer-rust/
+/undo/
