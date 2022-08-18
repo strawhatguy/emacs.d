@@ -163,8 +163,9 @@
 (defun mc/unixms2rfc3339 (ms)
   (interactive (list (read-number "millisecs: " (thing-at-point 'number) 'mc/unixms2rfc3339-history)))
   (let ((s (format-time-string "%Y-%m-%dT%H:%M:%S.%NZ" (seconds-to-time (/ ms 1000)) t)))
-    (message s)
-    (kill-new s)
+    (when (called-interactively-p 'any)
+      (message s)
+      (kill-new s))
     s))
 
 (defadvice yes-or-no-p (around prevent-dialog activate)
