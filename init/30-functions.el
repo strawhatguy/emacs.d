@@ -159,3 +159,19 @@
 (defun mc/add-rfc3339-zulu-time-at-point ()
   (interactive)
   (insert (format-time-string "%Y-%m-%dT%H:%M:%S.%NZ" nil "Z")))
+
+(defun mc/unixms2rfc3339 (ms)
+  (interactive (list (read-number "millisecs: " (thing-at-point 'number) 'mc/unixms2rfc3339-history)))
+  (let ((s (format-time-string "%Y-%m-%dT%H:%M:%S.%NZ" (seconds-to-time (/ ms 1000)) t)))
+    (message s)
+    (kill-new s)
+    s))
+
+(defadvice yes-or-no-p (around prevent-dialog activate)
+  "Prevent yes-or-no-p from activating a dialog"
+  (let ((use-dialog-box nil))
+    ad-do-it))
+(defadvice y-or-n-p (around prevent-dialog-yorn activate)
+  "Prevent y-or-n-p from activating a dialog"
+  (let ((use-dialog-box nil))
+    ad-do-it))
