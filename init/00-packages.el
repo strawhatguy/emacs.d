@@ -136,6 +136,8 @@
   :bind
   (("C-c e e" . eglot)
    :map eglot-mode-map
+   ("C-c e a" . eglot-code-actions)
+   ("C-c e f" . eglot-format)
    ("C-c e l" . flymake-show-buffer-diagnostics)
    ("C-c e n" . flymake-goto-next-error)
    ("C-c e l" . flymake-goto-prev-error)
