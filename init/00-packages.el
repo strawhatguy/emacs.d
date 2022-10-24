@@ -408,6 +408,12 @@
         ("C-c C" . string-inflection-lower-camelcase)
         ("C-c P" . string-inflection-camelcase)))
 
+(use-package sunshine
+  :ensure t
+  :config
+  (setq sunshine-location "98155,USA")
+  (setq sunshine-appid "69d6117651e8b0fca467e95d6b576ba3"))
+
 (use-package switch-window :ensure t)
 
 (use-package typescript-mode :ensure t)
