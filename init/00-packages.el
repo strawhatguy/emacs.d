@@ -129,6 +129,18 @@
 
   (mc/reload-elfeed-configuration))
 
+(use-package eglot :ensure t
+  :config
+  (add-hook 'go-mode-hook 'eglot-ensure)
+  (add-hook 'js2-mode-hook 'eglot-ensure)
+  :bind
+  (("C-c e e" . eglot)
+   :map eglot-mode-map
+   ("C-c e l" . flymake-show-buffer-diagnostics)
+   ("C-c e n" . flymake-goto-next-error)
+   ("C-c e l" . flymake-goto-prev-error)
+   ("C-c e r" . eglot-rename)))
+
 (use-package exec-path-from-shell
   :ensure t)
 
@@ -138,17 +150,6 @@
          ("s--" . er/contract-region)))
 
 (use-package fd-dired :ensure t)
-
-(use-package flycheck
-  :ensure t
-  :config
-  (global-flycheck-mode)
-  (setq-default flycheck-disabled-checkers '(javascript-jshint json-jsonlist rust-cargo))
-  (flycheck-add-mode 'javascript-eslint 'js-mode)
-  (flycheck-add-mode 'javascript-eslint 'js2-mode)
-  (flycheck-add-mode 'javascript-eslint 'web-mode))
-
-(use-package flycheck-rust :ensure t)
 
 (use-package geiser
   :ensure t
@@ -242,33 +243,7 @@
             (lambda ()
               (setq js-indent-level 2))))
 
-(use-package lastpass :ensure t)
-
-(use-package lsp-mode
-  :commands (lsp lsp-deferred)
-  :ensure t
-  :hook ((before-save . lsp-organize-imports)
-         (go-mode . lsp-deferred))
-  :config
-  (setq lsp-prefer-flymake nil)
-  (setq-default lsp-file-watch-threshold nil))
-
-(use-package lsp-ui :ensure t :after lsp :commands lsp-ui-mode)
-
-(use-package lsp-java :ensure t :after lsp
-  :hook (java-mode . lsp))
-
-(use-package dap-mode
-  :ensure t :after lsp-mode
-  :config
-  (dap-mode t)
-  (dap-ui-mode t)
-  (require 'dap-go)
-  (dap-go-setup))
-
 (use-package diminish :ensure t)
-
-(use-package dap-java :after lsp-java)
 
 (use-package less-css-mode
   :ensure t
@@ -360,6 +335,7 @@
 
 (use-package projectile
   :ensure t
+  :diminish projectile-mode
   :config
   (projectile-mode 1)
   (setq projectile-completion-system 'ivy)
@@ -371,13 +347,6 @@
 
 (use-package puppet-mode
   :ensure t)
-
-(use-package lsp-python-ms
-  :ensure t
-  :init (setq lsp-python-ms-auto-install-server t)
-  :hook (python-mode . (lambda ()
-                         (require 'lsp-python-ms)
-                         (lsp))))  ; or lsp-deferred
 
 (use-package racket-mode
   :ensure t)
@@ -448,6 +417,7 @@
 
 (use-package undo-tree
   :ensure t
+  :diminish undo-tree-mode
   :config
   (global-undo-tree-mode)
   (setq undo-tree-auto-save-history t)
