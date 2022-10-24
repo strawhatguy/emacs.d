@@ -1,3 +1,5 @@
+alias dcomp docker-compose $*
 alias ff find-file-other-window $1
 alias d dired $1
 alias dg deadgrep $1 $2
+alias async async-shell-command $1
