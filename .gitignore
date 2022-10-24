@@ -39,3 +39,5 @@ tramp
 /undo/
 /eshell/history
 /eshell/lastdir
+/.extension/
+/var/
