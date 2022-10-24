@@ -75,11 +75,11 @@
 (defun mc/buffer-list-sort (column)
   (interactive "SColumn to sort by (one of name,size,mode,file,time [default=time]): ")
   (case column
-    (name (Buffer-menu-sort 3))
-    (size (Buffer-menu-sort 4))
-    (mode (Buffer-menu-sort 5))
-    (file (Buffer-menu-sort 6))
-    (t    (Buffer-menu-sort nil))))
+    (name (tabulated-list-sort 3))
+    (size (tabulated-list-sort 4))
+    (mode (tabulated-list-sort 5))
+    (file (tabulated-list-sort 6))
+    (t    (tabulated-list-sort nil))))
 (defun mc/Buffer-mode-sort-key-hook ()
   (define-key Buffer-menu-mode-map (kbd "S") 'mc/buffer-list-sort))
 
