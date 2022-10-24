@@ -8,7 +8,7 @@
 
 ;;;; Highlight entire expression within parens
 (show-paren-mode t)
-(setq show-paren-style 'expression)
+(setq show-paren-style 'parenthesis)
 
 ;;;; show the end
 (set-default 'indicate-empty-lines t)
