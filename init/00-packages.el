@@ -49,14 +49,11 @@
               ("C-d" . company-show-doc-buffer)
               ("C-v" . company-show-location))
   :config
-  (add-hook 'after-init-hook
-            (lambda ()
-              (progn
-                (global-company-mode)
-                (setq company-idle-delay 0.1)
-                (setq company-minimum-prefix-length 3)
-                (setq company-tooltip-margin 1)
-                (setq company-tooltip-minimum-width 30)))))
+  (global-company-mode)
+  (setq company-idle-delay 0.1)
+  (setq company-minimum-prefix-length 3)
+  (setq company-tooltip-margin 1)
+  (setq company-tooltip-minimum-width 30))
 
 (use-package counsel :ensure t)
 (use-package counsel-projectile :ensure t)
@@ -131,16 +128,19 @@
 
 (use-package eglot :ensure t
   :config
+  (setq eglot-autoshutdown t)
   (add-hook 'go-mode-hook 'eglot-ensure)
   (add-hook 'js2-mode-hook 'eglot-ensure)
   :bind
   (("C-c e e" . eglot)
+   ("C-c e l" . flymake-show-buffer-diagnostics)
+   ("C-c e n" . flymake-goto-next-error)
+   ("C-c e p" . flymake-goto-prev-error)
    :map eglot-mode-map
    ("C-c e a" . eglot-code-actions)
    ("C-c e f" . eglot-format)
-   ("C-c e l" . flymake-show-buffer-diagnostics)
-   ("C-c e n" . flymake-goto-next-error)
-   ("C-c e l" . flymake-goto-prev-error)
+   ("C-c e t" . eglot-reconnect)
+   ("C-c e x" . eglot-shutdown)
    ("C-c e r" . eglot-rename)))
 
 (use-package exec-path-from-shell
