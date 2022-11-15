@@ -79,7 +79,7 @@
     (size (tabulated-list-sort 4))
     (mode (tabulated-list-sort 5))
     (file (tabulated-list-sort 6))
-    (t    (tabulated-list-sort nil))))
+    (t    (tabulated-list-sort -1))))
 (defun mc/Buffer-mode-sort-key-hook ()
   (define-key Buffer-menu-mode-map (kbd "S") 'mc/buffer-list-sort))
 
