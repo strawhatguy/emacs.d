@@ -57,6 +57,7 @@
 
 ;;;; save the file automatically
 (auto-save-visited-mode 1)
+(setq auto-save-visited-interval 5)
 
 ;;;; this advice function makes delete-trailing-whitespace less jarring
 (defun mc/not-at-end-of-line (func &rest args)
