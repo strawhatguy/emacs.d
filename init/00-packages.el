@@ -50,7 +50,7 @@
               ("C-v" . company-show-location))
   :config
   (global-company-mode)
-  (setq company-idle-delay 0.1)
+  (setq company-idle-delay 0.2)
   (setq company-minimum-prefix-length 3)
   (setq company-tooltip-margin 1)
   (setq company-tooltip-minimum-width 30))
@@ -129,6 +129,7 @@
 (use-package eglot :ensure t
   :config
   (setq eglot-autoshutdown t)
+  (setq eglot-send-changes-idle-time 2)
   (add-hook 'go-mode-hook 'eglot-ensure)
   (add-hook 'js2-mode-hook 'eglot-ensure)
   :bind
@@ -254,22 +255,9 @@
 
 (use-package magit
   :ensure t
-  :bind (("C-c g" . magit-status)
-         :map magit-status-mode-map
-         ("q" . magit-quit-session))
+  :bind (("C-c g" . magit-status))
 
   :config
-  (defadvice magit-status (around magit-fullscreen activate)
-    (window-configuration-to-register :magit-fullscreen)
-    ad-do-it
-    (delete-other-windows))
-
-  (defun magit-quit-session ()
-    "Restores the previous window configuration and kills the magit buffer"
-    (interactive)
-    (kill-buffer)
-    (jump-to-register :magit-fullscreen))
-
   (setq magit-last-seen-setup-instructions "1.4.0")
   (define-key magit-mode-map (kbd "M-<tab>") nil)
   (define-key magit-mode-map (kbd "C-<tab>") nil)
