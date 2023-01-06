@@ -129,7 +129,8 @@
 (use-package eglot :ensure t
   :config
   (setq eglot-autoshutdown t)
-  (setq eglot-send-changes-idle-time 2)
+  (setq eglot-send-changes-idle-time 1)
+  (setq eglot-ignored-server-capabilities '(:documentHighlightProvider))
   (add-hook 'go-mode-hook 'eglot-ensure)
   (add-hook 'js2-mode-hook 'eglot-ensure)
   :bind
@@ -262,6 +263,8 @@
   (define-key magit-mode-map (kbd "M-<tab>") nil)
   (define-key magit-mode-map (kbd "C-<tab>") nil)
   (define-key magit-mode-map (kbd "s-<tab>") nil))
+
+(use-package magit-circleci :ensure t)
 
 (use-package markdown-mode
   :ensure t)
