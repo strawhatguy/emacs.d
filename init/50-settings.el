@@ -56,8 +56,10 @@
 (setq scroll-step 1)                                ;; keyboard scroll one line at a time
 
 ;;;; save the file automatically
+(auto-save-mode -1)
 (auto-save-visited-mode 1)
 (setq auto-save-visited-interval 1)
+(setq auto-save-interval 0)
 (setq compilation-ask-about-save nil)
 
 ;;;; this advice function makes delete-trailing-whitespace less jarring
@@ -68,3 +70,16 @@
 (setq delete-trailing-lines t)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (advice-add 'delete-trailing-whitespace :around #'mc/not-at-end-of-line)
+
+;;;; postgres sql interactive to handle '-' in db names
+(defun mc/sql-interactive-mode-hook ()
+  "Custom interactive SQL mode behaviours.  See `sql-interactive-mode-hook'."
+  ;; Product-specific behaviours.
+  (when (eq sql-product 'postgres)
+    ;; Allow symbol chars and hyphens in database names in prompt.
+    ;; Default postgres pattern was: "^\\w*=[#>] " (see `sql-product-alist').
+    (setq sql-prompt-regexp "^\\(?:\\sw\\|\\s_\\|-\\)*=[#>] ")
+    ;; Ditto for continuation prompt: "^\\w*[-(][#>] "
+    (setq sql-prompt-cont-regexp "^\\(?:\\sw\\|\\s_\\|-\\)*[-(][#>] ")))
+
+(add-hook 'sql-interactive-mode-hook 'mc/sql-interactive-mode-hook)
