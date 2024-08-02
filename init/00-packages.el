@@ -49,11 +49,12 @@
               ("C-d" . company-show-doc-buffer)
               ("C-v" . company-show-location))
   :config
-  (global-company-mode)
+  (setq company-global-modes '(not eshell-mode))
   (setq company-idle-delay 0.2)
   (setq company-minimum-prefix-length 3)
   (setq company-tooltip-margin 1)
-  (setq company-tooltip-minimum-width 30))
+  (setq company-tooltip-minimum-width 30)
+  (global-company-mode))
 
 (use-package counsel :ensure t)
 (use-package counsel-projectile :ensure t)
@@ -99,14 +100,6 @@
 
 (use-package dockerfile-mode :ensure t)
 
-(use-package dumb-jump
-  :bind (("C-M->" . dumb-jump-go)
-         ("C-M-<" . dumb-jump-back))
-  :ensure t
-  :config
-  (setq dumb-jump-selector 'ivy)
-  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
-
 (use-package edn :ensure t)
 
 (use-package elfeed
@@ -131,8 +124,6 @@
   (setq eglot-autoshutdown t)
   (setq eglot-send-changes-idle-time 1)
   (setq eglot-ignored-server-capabilities '(:documentHighlightProvider))
-  (add-hook 'go-mode-hook 'eglot-ensure)
-  (add-hook 'js2-mode-hook 'eglot-ensure)
   :bind
   (("C-c e e" . eglot)
    ("C-c e l" . flymake-show-buffer-diagnostics)
@@ -264,8 +255,6 @@
   (define-key magit-mode-map (kbd "C-<tab>") nil)
   (define-key magit-mode-map (kbd "s-<tab>") nil))
 
-(use-package magit-circleci :ensure t)
-
 (use-package markdown-mode
   :ensure t)
 
@@ -285,38 +274,19 @@
 (use-package nodejs-repl
   :ensure t)
 
-(use-package nsis-mode
-  :ensure t
-  :config
-  (setq auto-mode-alist (append '(("\\.\\([Nn][Ss][Ii]\\)$" .
-                                   nsis-mode)) auto-mode-alist))
+;; (use-package nsis-mode
+;;   :ensure t
+;;   :config
+;;   (setq auto-mode-alist (append '(("\\.\\([Nn][Ss][Ii]\\)$" .
+;;                                    nsis-mode)) auto-mode-alist))
 
-  (setq auto-mode-alist (append '(("\\.\\([Nn][Ss][Hh]\\)$" .
-                                   nsis-mode)) auto-mode-alist)))
+;;   (setq auto-mode-alist (append '(("\\.\\([Nn][Ss][Hh]\\)$" .
+;;                                    nsis-mode)) auto-mode-alist)))
 
 (use-package nix-mode :ensure t)
 
 (use-package paredit
   :ensure t)
-
-(use-package parinfer-rust-mode
-  :ensure t
-  :bind
-  (("C-," . parinfer-toggle-mode))
-  :init
-  (progn
-    (setq parinfer-extensions
-          '(defaults       ; should be included.
-             pretty-parens  ; different paren styles for different modes.
-             ;lispy          ; If you use Lispy. With this extension, you should install Lispy and do not enable lispy-mode directly.
-             paredit        ; Introduce some paredit commands.
-             smart-tab      ; C-b & C-f jump positions and smart shift with tab & S-tab.
-             smart-yank))   ; Yank behavior depend on mode.
-    (add-hook 'clojure-mode-hook #'parinfer-rust-mode)
-    (add-hook 'emacs-lisp-mode-hook #'parinfer-rust-mode)
-    (add-hook 'common-lisp-mode-hook #'parinfer-rust-mode)
-    (add-hook 'scheme-mode-hook #'parinfer-rust-mode)
-    (add-hook 'lisp-mode-hook #'parinfer-rust-mode)))
 
 (use-package popup
   :ensure t
@@ -418,6 +388,7 @@
   :ensure t
   :diminish undo-tree-mode
   :config
+  (setq undo-tree-incompatible-major-modes '(term-mode eshell-mode))
   (global-undo-tree-mode)
   (setq undo-tree-auto-save-history t)
   (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo"))))
@@ -446,17 +417,13 @@
   :config
   (setq wgrep-auto-save-buffer t))
 
-(use-package xcscope
-  :ensure t)
+(use-package xcscope :ensure t)
 
 (use-package xkcd :ensure t)
 
-(use-package yaml-mode
-  :ensure t)
+(use-package yaml-mode :ensure t)
 
-(use-package yasnippet
-  :ensure t
-  :config (yas-global-mode 1))
+(use-package yasnippet :ensure t)
 
 (use-package vue-mode :ensure t)
 (use-package vue-html-mode :ensure t)
