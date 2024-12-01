@@ -1,7 +1,6 @@
 ;;;; custom functions here
 
 (require 'cl)
-(require 'dash)
 
 (defun mc/advice-unadvice (sym)
   "Remove all advices from symbol SYM."
