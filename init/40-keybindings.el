@@ -53,3 +53,6 @@
 (require 'sgml-mode)
 (define-key html-mode-map (kbd "C-M-f") 'sgml-skip-tag-forward)
 (define-key html-mode-map (kbd "C-M-b") 'sgml-skip-tag-backward)
+
+
+(define-key global-map (kbd "C-g") #'mc/keyboard-quit-dwim)

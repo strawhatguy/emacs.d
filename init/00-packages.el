@@ -339,6 +339,15 @@
   (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
   (setq company-tooltip-align-annotations t))
 
+;;;; Emacs server (allow emacsclient to connect to running session)
+(use-package server
+  :ensure nil
+  :defer 1
+  :config
+  (setq server-client-instructions nil)
+  (unless (server-running-p)
+    (server-start)))
+
 (use-package s
   :ensure t)
 
