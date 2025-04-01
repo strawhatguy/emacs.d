@@ -100,8 +100,6 @@
 
 (use-package dockerfile-mode :ensure t)
 
-(use-package edn :ensure t)
-
 (use-package elfeed
   :ensure t
   :bind ("C-x w" . elfeed)
@@ -311,9 +309,6 @@
 (use-package puppet-mode
   :ensure t)
 
-(use-package racket-mode
-  :ensure t)
-
 (use-package rainbow-delimiters
   :ensure t)
 
@@ -388,11 +383,6 @@
 
 (use-package typescript-mode :ensure t)
 
-(use-package twittering-mode
-  :ensure t
-  :config
-  (setq twittering-use-master-password t))
-
 (use-package undo-tree
   :ensure t
   :diminish undo-tree-mode
@@ -406,9 +396,6 @@
   :ensure t
   :config
   (unicode-fonts-setup))
-
-(use-package vterm
-  :ensure t)
 
 (use-package web-mode
   :ensure t
