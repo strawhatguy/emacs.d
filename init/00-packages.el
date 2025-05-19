@@ -134,6 +134,11 @@
    ("C-c e x" . eglot-shutdown)
    ("C-c e r" . eglot-rename)))
 
+(use-package ellama
+  :init
+  (setopt ellama-keymap-prefix "s-l")
+  )
+
 (use-package exec-path-from-shell
   :ensure t)
 
@@ -150,6 +155,8 @@
   (delete '("\\.rkt\\'" . scheme-mode) auto-mode-alist)
   :custom
   (geiser-active-implementations (quote (guile chicken chez mit chibi))))
+
+(use-package git-link :ensure t)
 
 (use-package git-gutter
   :ensure t
