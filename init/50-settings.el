@@ -46,9 +46,6 @@
 ;;;; Some rcirc mode configuration
 (setq rcirc-default-full-name "Matthew Curry")
 
-;;;; company mode messes up eshell
-(add-hook 'eshell-mode-hook (lambda () (ivy-mode -1)))
-
 ;;;; try and make mouse less jerky
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
 (setq mouse-wheel-progressive-speed nil)            ;; don't accelerate scrolling
