@@ -46,8 +46,10 @@
 ;;;; Ask for directory of the project to compile
 (defun mc/compile-asking-directory (top-level)
   (interactive "DProject toplevel directory: ")
-  (let ((compilation-directory top-level))
-    (funcall-interactively #'recompile t)))
+  (let ((default-directory top-level)
+        (command (read-string "Command: " (or compile-command "make -k"))))
+    (set (make-local-variable 'compile-command) command)
+    (compile command)))
 
 ;;;; Compile from project root
 (defun mc/compile-from-project-root ()
