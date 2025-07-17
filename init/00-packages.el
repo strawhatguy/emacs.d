@@ -69,10 +69,6 @@
   (setq deft-extensions '("org" "md"))
   (setq deft-default-extension "org"))
 
-(use-package devdocs
-  :ensure t
-  :bind (("C-c d p" . devdocs-search)))
-
 (use-package direnv :ensure t
   :config (direnv-mode))
 
