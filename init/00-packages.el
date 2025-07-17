@@ -346,6 +346,7 @@
 (use-package orderless
   :ensure t
   :custom
+  (orderless-matching-styles '(orderless-initialism orderless-literal))
   ;; (orderless-style-dispatchers '(orderless-affix-dispatch))
   ;; (orderless-component-separator #'orderless-escapable-split-on-space)
   (completion-styles '(orderless basic))
