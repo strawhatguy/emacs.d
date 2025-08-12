@@ -95,6 +95,8 @@
   :config
   (setq eglot-autoshutdown t)
   (setq eglot-send-changes-idle-time 1)
+  (setq eglot-code-action-indications '(eldoc-hint))
+  (setq eglot-code-action-indicator "⚡")
   (setq eglot-ignored-server-capabilities '(:documentHighlightProvider))
   :bind
   (("C-c e e" . eglot)
