@@ -305,6 +305,11 @@
   ;;        (shell-mode . corfu-mode)
   ;;        (eshell-mode . corfu-mode))
 
+  :bind
+  (:map corfu-map
+        ("TAB" . corfu-insert)
+        ([tab] . corfu-insert))
+
   :init
 
   ;; Recommended: Enable Corfu globally.  Recommended since many modes provide
