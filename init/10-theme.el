@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;;;; theme changes here, although zenburn is pretty nice already
 
 ;;;; set font

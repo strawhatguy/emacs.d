@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 ;;;; custom key bindings go here
 
 ;;;; window splitting

@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 ;;;; custom settings
 
 ;;;; Seed the random-number generator

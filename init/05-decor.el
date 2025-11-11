@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 ;;;; Initial editor decorations (or lack thereof)
 
 ;;;; GNU really should requre cl by default, but since stallman hates

@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 ;;;; system specific stuff here
 
 (defun mc/darwin-settings ()

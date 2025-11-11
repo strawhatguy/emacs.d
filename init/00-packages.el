@@ -22,6 +22,9 @@
 ;; packages
 (message "==== use-package packages ====")
 
+;; put first, if it matters, for the use-package :diminish key
+(use-package diminish :ensure t)
+
 (use-package avy
   :ensure t
   :bind (("C-." . avy-goto-word-1))
@@ -167,6 +170,37 @@
   (setq haskell-process-path-stack
         (concat (getenv "HOME")
                 "/Library/Haskell/bin/stack")))
+
+(use-package gptel
+  :ensure t)
+
+;; claude code
+;; for eat terminal backend:
+(use-package eat :ensure t)
+
+;; monet
+(use-package monet :ensure t
+  :diminish monet-mode
+  :vc (:url "https://github.com/stevemolitor/monet" :rev :newest))
+
+;; for vterm terminal backend:
+(use-package vterm :ensure t)
+
+;; install claude-code.el
+(use-package claude-code :ensure t
+  :diminish claude-code-mode
+  :vc (:url "https://github.com/stevemolitor/claude-code.el" :rev :newest)
+  :config
+  ;; optional IDE integration with Monet
+  (add-hook 'claude-code-process-environment-functions #'monet-start-server-function)
+  (monet-mode 1)
+
+  (claude-code-mode)
+  :bind-keymap ("C-c c" . claude-code-command-map)
+
+  ;; Optionally define a repeat map so that "M" will cycle thru Claude auto-accept/plan/confirm modes after invoking claude-code-cycle-mode / C-c M.
+  :bind
+  (:repeat-map my-claude-code-map ("M" . claude-code-cycle-mode)))
 
 ;; Enable Vertico.
 (use-package vertico
@@ -411,8 +445,6 @@
             (lambda ()
               (setq js-indent-level 2))))
 
-(use-package diminish :ensure t)
-
 (use-package less-css-mode
   :ensure t
   :config
@@ -446,17 +478,6 @@
 
 (use-package nodejs-repl
   :ensure t)
-
-;; (use-package nsis-mode
-;;   :ensure t
-;;   :config
-;;   (setq auto-mode-alist (append '(("\\.\\([Nn][Ss][Ii]\\)$" .
-;;                                    nsis-mode)) auto-mode-alist))
-
-;;   (setq auto-mode-alist (append '(("\\.\\([Nn][Ss][Hh]\\)$" .
-;;                                    nsis-mode)) auto-mode-alist)))
-
-(use-package nix-mode :ensure t)
 
 (use-package paredit
   :ensure t)

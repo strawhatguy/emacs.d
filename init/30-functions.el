@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 ;;;; custom functions here
 
 (require 'cl)
@@ -48,7 +49,7 @@
   (interactive "DProject toplevel directory: ")
   (let ((default-directory top-level)
         (command (read-string "Command: " (or compile-command "make -k"))))
-    (set (make-local-variable 'compile-command) command)
+    (setq compile-command command)
     (compile command)))
 
 ;;;; Compile from project root
@@ -188,7 +189,7 @@ minibuffer, even without explicitly focusing it.
 
 The DWIM behaviour of this command is as follows:
 
-- When the region is active, disable it.
+ When the region is active, disable it.
 - When a minibuffer is open, but not focused, close the minibuffer.
 - When the Completions buffer is selected, close it.
 - In every other case use the regular `keyboard-quit'."
@@ -202,3 +203,20 @@ The DWIM behaviour of this command is as follows:
     (abort-recursive-edit))
    (t
     (keyboard-quit))))
+
+(defun my/isearch-yank-word-at-point ()
+  "Start isearch with the word at point as the initial search string."
+  (interactive)
+  (let ((word (thing-at-point 'symbol 'no-properties)))
+    (if word
+        (progn
+          (isearch-mode t nil nil nil)
+          (isearch-yank-string word))
+      (isearch-mode t))))
+
+(global-set-key (kbd "C-c s") 'my/isearch-yank-word-at-point)
+
+
+;; remove git branch from modeline
+(advice-add 'vc-git-mode-line-string
+            :override (lambda (file) ""))
