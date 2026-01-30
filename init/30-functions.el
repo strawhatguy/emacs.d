@@ -220,3 +220,17 @@ The DWIM behaviour of this command is as follows:
 ;; remove git branch from modeline
 (advice-add 'vc-git-mode-line-string
             :override (lambda (file) ""))
+
+(defun mc/sql-login (type server database user password)
+  (setopt sql-server server)
+  (setopt sql-database database)
+  (setopt sql-user user)
+  (setopt sql-password password)
+  (cl-case type
+    (postgres (sql-postgres (format "*postgres: %s*" server)))
+    (t (error "unsupported type %s" type))))
+
+(defmacro mc/sql-add-login (sym type server database user password)
+  `(defun ,sym ()
+     (interactive)
+     (mc/sql-login ',type ,server ,database ,user ,password)))

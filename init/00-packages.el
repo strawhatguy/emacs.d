@@ -572,7 +572,9 @@
 
 (use-package switch-window :ensure t)
 
-(use-package typescript-mode :ensure t)
+(use-package typescript-mode :ensure t
+  :config
+  (setq typescript-indent-level 2))
 
 (use-package undo-tree
   :ensure t
