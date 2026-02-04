@@ -183,9 +183,6 @@
   :diminish monet-mode
   :vc (:url "https://github.com/stevemolitor/monet" :rev :newest))
 
-;; for vterm terminal backend:
-(use-package vterm :ensure t)
-
 ;; install claude-code.el
 (use-package claude-code :ensure t
   :diminish claude-code-mode
