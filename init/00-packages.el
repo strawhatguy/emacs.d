@@ -611,6 +611,8 @@
 
 (use-package yasnippet :ensure t)
 
+(use-package vterm :ensure t)
+
 (use-package vue-mode :ensure t)
 (use-package vue-html-mode :ensure t)
 
